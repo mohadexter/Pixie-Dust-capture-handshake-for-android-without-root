@@ -40,13 +40,16 @@
   <text x="520" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="84" font-weight="700" fill="#FFFFFF">Pixie Dust</text>
 
   <!-- subtitle -->
-  <text x="520" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#9CA3AF">WPS &amp; WPA security audit on Android, without root</text>
+  <text x="520" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#9CA3AF">WPS &amp; capture handshake security audit on Android, without root</text>
 
   <!-- tagline -->
   <text x="520" y="372" font-family="Consolas, monospace" font-size="20" fill="#6B7280">Java + Python 3.11 + libusb 1.0.30 over USB OTG</text>
 
+  <!-- usage hint -->
+  <text x="520" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#4B5563">Plug a supported USB Wi-Fi adapter via OTG, then scan, capture or audit.</text>
+
   <!-- badges -->
-  <g transform="translate(520,410)">
+  <g transform="translate(520,440)">
     <rect width="150" height="34" rx="17" fill="#1F2937"/>
     <text x="75" y="23" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#10B981" text-anchor="middle">ARM only</text>
     <rect x="165" width="170" height="34" rx="17" fill="#1F2937"/>
