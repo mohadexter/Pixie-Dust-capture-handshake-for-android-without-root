@@ -2,6 +2,15 @@
 
 > **Read the article:** [Pixie Dust: Auditing WPS and WPA Security from an Android Phone, Without Root](ARTICLE.md) — a full technical write-up covering the architecture, the libusb-on-Android work, the interface, the safety rules and the honest limits of the project.
 
+## Purpose and ethics
+
+**Pixie Dust is a cybersecurity tool.** Its purpose is to help a network owner (or a tester who has written authorization) evaluate the security of a **WPS** deployment and of the **WPA 4-way handshake** on a Wi-Fi network, and to discover weaknesses before an attacker does.
+
+- Use it **only on networks you own** or for which you have **explicit written permission** to test.
+- The app asks for confirmation before every operation and shows a consent dialog before the first frame is transmitted.
+- It has no `INTERNET` permission and cannot transmit anything: recovered PINs/passwords stay on the device.
+- Misuse of this tool against networks you do not own is illegal in most jurisdictions.
+
 ## Short description
 
 **Pixie Dust** is a security app for Android that audits the security of **WPS** (Wi-Fi Protected Setup) on wireless networks over a **USB OTG** port.
