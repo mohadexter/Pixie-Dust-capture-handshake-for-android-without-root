@@ -76,19 +76,19 @@ The application is deliberately conservative about its dependencies. It uses pla
 
 The single most important design decision is that **exactly one thread ever talks to the USB device**. The engine runs on a dedicated `pixie-engine` thread, and every operation — scan, capture, WPS attempt — is serialised through it.
 
-The UI never blocks on the engine. It reads a single observable state object (`Repo`) and redraws.
+The UI never blocks on the engine. It reads a single observable state object (`Repo`) and redraws. Because the update callback is posted to the main thread, there is no locking in the UI code and no chance of touching a View from a background thread.
 
 ### Getting libusb to work on Android without root
 
 On a desktop, libusb opens a device by path. On Android, the USB device node under `/dev/bus/usb/` is not readable by an ordinary app. An app *can* get a **file descriptor** from the system, after the user grants permission through the standard OTG dialog.
 
-The bridge hands libusb an already-open descriptor instead of a device path. The bundled `libusb_fd.py` handles that handover and the platform quirks. The notable one is `libusb_get_configuration` failing with `Operation not permitted` on some chipset/phone combinations, which the module works around.
+The bridge therefore hands libusb an already-open descriptor instead of a device path, and lets libusb wrap it. The bundled `libusb_fd.py` module handles that handover and the platform quirks. The notable one is `libusb_get_configuration` failing with `Operation not permitted` on some chipset/phone combinations, which the module works around.
 
-Native libraries must exist as **real files on disk**, not inside the APK's zip. The build uses `useLegacyPackaging = true` so libusb is extracted at install time; otherwise the app installs fine and fails at the first USB call.
+There is a second, less obvious problem: native libraries must exist as **real files on disk**, not inside the APK's zip. The build is configured with `useLegacyPackaging = true` to force extraction at install time, because the Python binding loads libusb with `ctypes.CDLL(<nativeLibraryDir>/libusb-1.0.so)`.
+
+The Python packages that carry firmware blobs are likewise extracted rather than imported from the archive, because the drivers read them as files.
 
 ### Supported hardware
-
-The driver stack covers a wide range of USB adapters:
 
 | Group | Chipset | Adapter | Bands |
 |---|---|---|---|
@@ -98,8 +98,7 @@ The driver stack covers a wide range of USB adapters:
 | Realtek | RTL8187 / RTL8188 / RTL8192 / RTL8812AU / RTL8814AU / RTL8821AU / RTL8822BU / RTL8922AU / RTL8811CU / RTL8822CU | — | 2.4 / 2.4-5 / … |
 | TP-Link | RTL8192EU / RTL8188 / Archer T2U Plus | TL-WN823N, TL-WN722N, Archer T2U Plus | 2.4 / 2.4-5 |
 
-Only ARM is shipped — `arm64-v8a` and `armeabi-v7a` — because the firmware blobs and the driver are
-architecture-specific and because x86 has no OTG radio to talk to anyway.
+Only ARM is shipped — `arm64-v8a` and `armeabi-v7a`.
 
 ---
 
@@ -108,13 +107,53 @@ architecture-specific and because x86 has no OTG radio to talk to anyway.
 The app is designed to be usable by someone who has never run a Wi-Fi audit before, without hiding what it is doing.
 
 - **Scan network** lists nearby access points, strongest signal first, with manufacturer and router model.
-- Tapping a network opens a compact sheet with technical facts — BSSID, channel, encryption, WPS version,
-  client count — and exactly two actions as equal cards: **Capture WPA handshake** and **PixieDust attack**.
-- The **capture screen** walks through five stages with a live stepper, a plain-language stage explanation, and
-  one button toggling *Start capture handshake* / *Stop capture*.
+- Tapping a network opens a sheet with technical facts — BSSID, channel, encryption, WPS version, client count — and exactly two equal cards: **Capture WPA handshake** and **PixieDust attack**.
+- The **capture screen** walks through five stages with a live stepper, a plain-language stage explanation, and one button toggling *Start capture handshake* / *Stop capture*.
 - On success a small frame shows the file path (Open file / Copy path); on failure a warning icon is shown.
+- Available in **English and French** only, light theme only.
 
-The interface is available in **English and French** only, and it is light-theme only.
+---
+
+## The five-stage capture pipeline
+
+| Stage | Title (EN) | What the code does |
+|---|---|---|
+| 1 | Open the adapter | Open the USB adapter and tune to the target channel. |
+| 2 | Monitor RX | Raw monitor receive: every frame on that channel is read. |
+| 3 | Bounded deauth | Send a small number of deauth frames to clients seen on this BSSID. |
+| 4 | Extract EAPOL | Pull EAPOL M1–M4 out of the captured frames and pair them. |
+| 5 | Save pcap | Write the pcap to the chosen handshake folder. |
+
+A capture is bounded to a fixed window (`CAPTURE_SECONDS = 120).
+
+---
+
+## The file that gets written
+
+- The pcap is written only after the bundled validator confirms a crackable pair.
+- The published path is `Download/<handshake folder>/<name>.pcap`.
+- The capture log lines are *"Complete handshake saved: …"* / *"Partial capture saved: …"*.
+- The EAPOL payload is labelled per message: `handshake_complete` reports `M<message number>`.
+
+For offline analysis, the pcap uses linktype `105`, so it can be read with `hcxpcapngtool` and then fed to
+`hashcat -m 22000`.
+
+---
+
+## The error taxonomy
+
+- `no_m1` is never shown as "wrong PIN". It is surfaced as *"the router did not start a WPS session"*, and the
+  attempt is stopped rather than retried.
+
+The old behaviour could tell a user their PIN was wrong when the real problem was that no session ever started.
+The new behaviour stops the run and leaves the user with an accurate statement.
+
+---
+
+## The result and history
+
+- Recovered values (WPS PIN and Wi-Fi password) are shown together on the result screen, in one success frame
+  with a short vibration, a heavier monospace line, and a single copy action.
 
 ---
 
