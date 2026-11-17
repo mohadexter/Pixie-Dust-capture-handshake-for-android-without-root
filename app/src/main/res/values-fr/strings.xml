@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Pixie Dust</string>
+
+    <!-- ================= Scan ================= -->
+    <string name="scan_title">Scanner le réseau</string>
+    <string name="scan_adapter_none">Aucun adaptateur connecté</string>
+    <string name="scan_adapter_named">Adaptateur : %1$s</string>
+    <string name="scan_count_zero">Rien pour le moment</string>
+    <string name="scan_count_many">%1$d réseau(x)</string>
+    <string name="scan_last_scan">%1$d AP · %2$d beacon · %3$s</string>
+    <string name="scan_btn_scan">Balayer</string>
+    <string name="scan_btn_scanning">Balayage…</string>
+    <string name="scan_next_in">Suivant dans %1$d s</string>
+    <string name="scan_waiting">Ouverture de l’adaptateur USB…</string>
+    <string name="scan_empty_title">Rien pour le moment</string>
+    <string name="scan_empty_body">Branchez un adaptateur Wi-Fi USB pris en charge dans le téléphone avec un câble OTG, puis touchez Balayer.</string>
+    <string name="scan_hidden">(masqué)</string>
+    <string name="scan_ch">Canal %1$d</string>
+    <string name="scan_dbm">%1$d dBm</string>
+    <string name="scan_wps">WPS</string>
+    <string name="scan_wps_lock">verrouillé</string>
+    <string name="btn_drivers">Adaptateur</string>
+    <string name="btn_settings">Réglages</string>
+    <string name="cd_settings">Réglages</string>
+    <string name="cd_adapter">Adaptateur</string>
+    <string name="cd_logo">Pixie Dust</string>
+    <string name="cd_signal">Intensité du signal</string>
+
+    <!-- ================= Errors ================= -->
+    <string name="err_title">Une erreur s’est produite</string>
+    <string name="err_details_show">Détails techniques</string>
+    <string name="btn_retry">Réessayer</string>
+    <string name="err_usb_permission">L’accès USB a été refusé. Touchez le bouton et autorisez l’adaptateur.</string>
+    <string name="err_no_device">Aucun adaptateur USB sur le port OTG.</string>
+    <string name="err_no_driver">Aucun pilote ne correspond à cet adaptateur.</string>
+    <string name="err_driver_mismatch">Le pilote imposé ne correspond pas à l’adaptateur. Réinitialisez le contournement.</string>
+    <string name="err_wrong_interface">Mauvaise interface USB. Débranchez l’adaptateur, puis rebranchez-le.</string>
+    <string name="err_firmware">Firmware absent ou corrompu pour cette puce.</string>
+    <string name="err_zerocd">L’adaptateur est en mode CD-ROM. Éjectez-le, puis rebranchez-le.</string>
+    <string name="err_libusb">La couche USB a échoué. Rebranchez l’adaptateur.</string>
+    <string name="err_interface_claim">Impossible de réserver l’interface USB. Rebranchez l’adaptateur.</string>
+    <string name="err_driver_init">Le pilote n’a pas pu démarrer sur cet adaptateur.</string>
+    <string name="err_zero_frames">L’adaptateur s’est ouvert, mais aucun trame radio n’est arrivé.</string>
+    <string name="err_no_beacons">J’ai reçu %1$d trames, mais aucun point d’accès n’a pu être décodé.</string>
+    <string name="err_scan_empty">Aucun réseau Wi-Fi dans ce balayage.</string>
+    <string name="err_wps_locked">Le point d’accès signale un verrouillage WPS.</string>
+    <string name="err_m1m3_timeout">Le point d’accès n’a pas répondu au handshake WPS dans les temps.</string>
+    <string name="err_assoc_failed">L’association au point d’accès a échoué.</string>
+    <string name="err_no_m1">Le routeur n’a pas commencé une nouvelle session WPS. Attendez une minute, puis réessayez.</string>
+    <string name="err_offline_crack">Pixie Dust n’a pas pu récupérer ce PIN. La moitié avant est dans les détails.</string>
+    <string name="err_engine">Le moteur Pixie Dust a rencontré une erreur interne.</string>
+    <string name="err_verify_rejected">Le point d’accès a rejeté le PIN.</string>
+    <string name="err_pin_ok_no_credential">Le PIN est valide, mais le point d’accès n’a renvoyé aucun mot de passe.</string>
+    <string name="err_m7_decrypt">Impossible de décrypter le message final qui porte le mot de passe.</string>
+    <string name="err_verify_timeout">La transaction WPS de vérification a expiré.</string>
+    <string name="err_usb_detached">L’adaptateur a été déconnecté.</string>
+    <string name="err_internal">Erreur inattendue. Voyez les détails.</string>
+
+    <!-- ================= Details ================= -->
+    <string name="details_title">Réseau</string>
+    <string name="details_bssid">BSSID</string>
+    <string name="details_channel">Canal</string>
+    <string name="details_band">Bande</string>
+    <string name="details_band_24">2,4 GHz</string>
+    <string name="details_band_5">5 GHz</string>
+    <string name="details_security">Sécurité</string>
+    <string name="details_vendor">Fabricant</string>
+    <string name="details_wps_on">WPS %1$s</string>
+    <string name="details_section_plan">Ce que fait l’opération</string>
+    <string name="details_step1">1. Ouvre l’adaptateur et capte le handshake WPS M1 → M3.</string>
+    <string name="details_step2">2. Restitue le PIN hors ligne avec Pixie Dust.</string>
+    <string name="details_step3">3. Envoie une seule transaction WPS pour vérifier le PIN et récupérer le PSK.</string>
+    <string name="details_step4">4. Sans nouvelle tentative et sans dépasser le verrou : une seule tentative par lancement.</string>
+    <string name="details_locked_title">WPS verrouillé signalé</string>
+    <string name="details_locked_body">Le point d’accès signale un verrouillage. L’opération peut être rejetée ou épuiser la tentative restante.</string>
+    <string name="details_options">Cette exécution</string>
+    <string name="details_deep">Recherche hors ligne approfondie</string>
+    <string name="details_deep_hint">Modèles PRNG supplémentaires : plus lent, mais plus large.</string>
+    <string name="details_verify">Récupérer le PSK maintenant</string>
+    <string name="details_verify_hint">Une transaction WPS juste pour confirmer le PIN et en demander le PSK.</string>
+    <string name="details_start">Lancer l’opération</string>
+    <string name="details_blocked_title">Ce réseau ne peut pas être ciblé</string>
+    <string name="details_blocked_no_wps">Ce réseau ne propose pas de WPS.</string>
+    <string name="details_blocked_hidden">Les réseaux masqués exigent un SSID et un canal saisis manuellement.</string>
+    <string name="details_blocked_channel">Seuls les canaux 2,4 GHz de 1 à 14 sont utilisés.</string>
+    <string name="details_consent_title">Une opération, sur votre réseau</string>
+    <string name="details_consent_body">Une tentative WPS unique avec le PIN récupéré sur %1$s sera faite ici. Elle peut épuiser une des places du verrou WPS dans l’adaptateur. Continuez seulement si vous possédez ce réseau ou si vous avez une autorisation écrite de le tester.</string>
+    <string name="details_consent_locked">Le point d’accès signale un verrouillage préalable : l’opération peut être rejetée tout de suite.</string>
+    <string name="details_consent_start">Lancer l’opération</string>
+    <string name="details_footnote">Le PIN et le mot de passe sont conservés sur cet appareil dans votre historique privé ; ils ne sont jamais envoyés sur Internet ni écrits dans les journaux.</string>
+
+    <!-- ================= Attack ================= -->
+    <string name="attack_title">L’opération</string>
+    <string name="attack_running_title">En cours sur %1$s</string>
+    <string name="attack_step_usb">Adaptateur</string>
+    <string name="attack_step_capture">Capture</string>
+    <string name="attack_step_offline">Recherche PIN</string>
+    <string name="attack_step_verify">Vérification</string>
+    <string name="attack_step_password">PSK</string>
+    <string name="attack_step_done">Terminé</string>
+    <string name="attack_step_failed">Arrêté</string>
+    <string name="attack_log_title">Journal en direct</string>
+    <string name="attack_cancel">Arrêter</string>
+    <string name="attack_cancel_confirm">Arrêter l’opération ?</string>
+    <string name="attack_cancel_body">L’adaptateur se libère immédiatement ; aucune nouvelle tentative n’est faite.</string>
+    <string name="attack_keep_open">Laisser cet écran ouvert et l’adaptateur branché.</string>
+
+    <!-- ================= Result ================= -->
+    <string name="result_title">Résultat</string>
+    <string name="result_pin_label">WPS PIN</string>
+    <string name="result_psk_label">Mot de passe Wi-Fi</string>
+    <string name="result_copy">Copier</string>
+    <string name="result_copied">Copié</string>
+    <string name="result_psk_pending">Le PIN a été accepté, mais le point d’accès n’a pas renvoyé de PSK. Lancez la vérification directe pour l’obtenir.</string>
+    <string name="result_psk_none">Aucun PSK obtenu.</string>
+    <string name="result_verify_again">Vérifier le PIN et récupérer le PSK</string>
+    <string name="result_rescan">Nouvelle balade</string>
+    <string name="result_status_pin_psk">PIN et PSK récupérés</string>
+    <string name="result_status_pin_only">PIN récupéré · PSK absent</string>
+    <string name="result_status_failed">L’opération s’est arrêtée</string>
+
+    <!-- ================= Settings ================= -->
+    <string name="settings_title">Réglages</string>
+    <string name="settings_scan_section">Balayage</string>
+    <string name="settings_scan_timeout">Durée du balayage</string>
+    <string name="settings_refresh">Intervalle de balayage auto</string>
+    <string name="settings_seconds">%1$d s</string>
+    <string name="settings_keep_on_title">Garder l’écran allumé</string>
+    <string name="settings_keep_on_body">Empêche le CPU de dormir pendant une tentative.</string>
+    <string name="settings_auto_title">Balayage automatique</string>
+    <string name="settings_auto_body">Rafraîchit la liste pendant que l’app est ouverte.</string>
+    <string name="settings_all_title">Afficher tous les réseaux</string>
+    <string name="settings_all_body">Affiche aussi les réseaux sans WPS ou WPA. Activé par défaut : la liste montre tout, avec un code couleur de compatibilité PixieDust.</string>
+    <string name="settings_attack_section">Valeurs par défaut de l’opération</string>
+    <string name="settings_deep_title">Recherche hors ligne approfondie</string>
+    <string name="settings_deep_body">Essaie des modèles PRNG supplémentaires. Plus lent, parfois décisif.</string>
+    <string name="settings_verify_title">Récupérer le PSK dans la même exécution</string>
+    <string name="settings_verify_body">Une transaction WPS de plus quand un PIN est trouvé.</string>
+    <string name="settings_language_section">Langue</string>
+    <string name="settings_language_system">Suivre le système</string>
+    <string name="settings_language_note">L’anglais et le français sont inclus. Android 13+ permet aussi de choisir la langue par application.</string>
+    <string name="settings_driver_section">Adaptateur et pilote</string>
+    <string name="settings_chipset">Surcharge du jeu de puces</string>
+    <string name="settings_chipset_auto">Détection automatique</string>
+    <string name="settings_reset">Réinitialiser les surcharges</string>
+    <string name="settings_open_drivers">Ouvrir le diagnostic de l’adaptateur</string>
+    <string name="settings_about_row">À propos de Pixie Dust</string>
+    <string name="lang_en">English</string>
+    <string name="lang_fr">Français</string>
+
+    <!-- Stockage des handshakes -->
+    <string name="settings_storage_section">Stockage des handshakes</string>
+    <string name="settings_storage_body">Les fichiers pcap capturés sont écrits ici, hors de Android/data, pour qu’un gestionnaire de fichiers puisse les ouvrir.</string>
+    <string name="settings_folder_change">Changer de dossier</string>
+    <string name="settings_folder_default">Download/Hanshake (par défaut)</string>
+    <string name="settings_folder_pick">Choisir un autre dossier…</string>
+    <string name="settings_folder_custom">Nom de dossier personnalisé…</string>
+    <string name="settings_folder_name_title">Nom du dossier</string>
+    <string name="settings_folder_save">Enregistrer</string>
+    <string name="settings_folder_invalid">Utilisez un nom sans / ni ..</string>
+    <string name="settings_folder_pick_failed">Le sélecteur de dossier système n’est pas disponible</string>
+    <string name="settings_folder_saved">Dossier mis à jour</string>
+
+    <!-- ================= Drivers ================= -->
+    <string name="drivers_title">Adaptateur</string>
+    <string name="drivers_connected_title">Adaptateur connecté</string>
+    <string name="drivers_none_title">Aucun adaptateur</string>
+    <string name="drivers_none_body">Branchez un adaptateur Wi-Fi USB pris en charge via un câble OTG.</string>
+    <string name="drivers_supported">Pris en charge</string>
+    <string name="drivers_unknown">Inconnu</string>
+    <string name="drivers_permission">Autoriser l’accès USB</string>
+    <string name="drivers_test">Lancer le test du pilote</string>
+    <string name="drivers_testing">Lancement du test du pilote…</string>
+    <string name="drivers_steps_title">Étapes du test</string>
+    <string name="drivers_list_title">Adaptateurs pris en charge</string>
+    <string name="drivers_list_hint">Les noms de puces et plages proviennent des pilotes intégrés.</string>
+    <string name="drivers_vidpid">0x%1$s</string>
+
+    <!-- ================= Disclaimer ================= -->
+    <string name="disclaimer_title">Avant de commencer</string>
+    <string name="disclaimer_kicker">Lisez-le une fois - l’appli ne vous le demandera plus</string>
+    <string name="disclaimer_body">Cet outil réalise un audit WPS Pixie Dust sur des réseaux Wi-Fi que vous êtes autorisé à tester.
+
+• Utilisez-le uniquement sur votre réseau ou avec l’autorisation écrite de son propriétaire. Tester un réseau sans autorisation est illégal dans de nombreux pays.
+• Chaque exécution envoie exactement une transaction WPS. Aucune répétition, aucun contournement de verrouillage et aucun flood.
+• Un routeur peut verrouiller WPS après quelques échecs. Ce verrouillage est réel et peut nécessiter un redémarrage physique.
+• Sans root, sans wpa_supplicant, sans recherche de PIN en ligne : Pixie Dust uniquement, avec un adaptateur USB pris en charge.
+• Le PIN et le mot de passe sont conservés dans l’historique privé de l’application sur ce téléphone. Ils ne sont jamais écrits dans les journaux et ne quittent pas l’appareil.
+• L’application n’a pas l’autorisation INTERNET : aucune donnée ne quitte le téléphone.
+
+En continuant, vous confirmez avoir compris ces conditions et être autorisé à tester les réseaux sélectionnés.</string>
+    <string name="disclaimer_accept">J’ai l’autorisation — continuer</string>
+    <string name="disclaimer_decline">Fermer</string>
+
+    <!-- ================= About ================= -->
+    <string name="about_title">À propos de Pixie Dust</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_body">Petite appli à usage unique : récupérer le WPS PIN avec Pixie Dust, puis le vérifier une fois sur le point d’accès.</string>
+    <string name="about_line_no_internet">Sans INTERNET</string>
+    <string name="about_line_no_root">Sans root ni wpa_supplicant</string>
+    <string name="about_line_one_attempt">Un seul PIN par exécution</string>
+    <string name="about_line_logs">Le PIN et le mot de passe restent dans l’historique privé de l’appli, jamais dans les journaux</string>
+    <string name="about_engine">Moteur : PixieDust (Python 3.11 intégré via Chaquopy)</string>
+    <string name="about_licence">GPL-3.0 — la licence complète est fournie avec l’archive source.</string>
+    <string name="about_close">Fermer</string>
+
+    <!-- ================= Service ================= -->
+    <string name="service_channel">L’opération</string>
+    <string name="service_title">Pixie Dust travaille</string>
+    <string name="service_text">Garder l’adaptateur branché</string>
+
+    <string name="generic_back">Retour</string>
+    <string name="generic_cancel">Annuler</string>
+    <string name="generic_close">Fermer</string>
+
+    <!-- ================= USB engine ================= -->
+    <string name="drivers_engine_title">Moteur USB</string>
+    <string name="drivers_engine_ok">libusb %1$s · %2$s</string>
+    <string name="drivers_engine_fail">libusb n’a pas chargé</string>
+    <string name="drivers_engine_checking">Vérification du moteur USB…</string>
+
+    <string name="scan_only_candidates">Seuls les réseaux utilisables par PixieDust (WPS + WPA) sont affichés. Activez « Afficher tous les réseaux » dans les réglages pour voir les autres.</string>
+    <string name="scan_none_candidates_title">Aucun réseau utilisable par Pixie Dust</string>
+    <string name="scan_none_candidates_body">%1$d réseau(x) trouvé(s), mais aucun n’annonce WPS avec WPA/WPA2. Activez « Afficher tous les réseaux » dans les réglages pour les voir quand même.</string>
+    <string name="scan_clients">%1$d clients</string>
+    <string name="scan_clients_one">1 client</string>
+    <string name="attack_detail_usb">Ouverture de l’adaptateur et lecture de ses descripteurs USB…</string>
+    <string name="attack_detail_capture">Un EAPOL-Start sur le canal %1$d, puis attente du handshake WPS M1–M3…</string>
+    <string name="attack_detail_offline">Recherche PRNG hors ligne — la radio reste silencieuse pendant ce temps…</string>
+    <string name="attack_detail_verify">Une transaction WPS pour confirmer le PIN et demander le PSK…</string>
+    <string name="attack_detail_password">Décryptage du dernier message WPS qui porte le mot de passe…</string>
+    <string name="attack_detail_done">Terminé. Le PIN et le mot de passe sont sur l’écran de résultat.</string>
+    <string name="attack_detail_failed">Arrêté. Le diagnostic de l’écran suivant explique ce qui s’est passé.</string>
+    <string name="attack_facts">%1$s · %2$s</string>
+    <string name="attack_facts_capture">M1–M3 capturés</string>
+    <string name="attack_facts_crack">Recherche PIN %1$s</string>
+    <string name="attack_facts_verify">PSK renvoyé</string>
+    <string name="attack_facts_none">Aucune étape terminée</string>
+    <string name="result_table_title">Summary</string>
+    <string name="result_table_ssid">Network</string>
+    <string name="result_table_bssid">MAC address</string>
+    <string name="result_table_vendor">Fabricant</string>
+    <string name="result_vendor_unknown">Fabricant inconnu</string>
+    <string name="result_table_psk">Password</string>
+    <string name="result_table_pin">PIN</string>
+    <string name="result_table_clients">Clients</string>
+    <string name="handshake_title">Capture du handshake WPA</string>
+    <string name="handshake_body">Écoute le canal de ce réseau et enregistre le handshake WPA 4-way d’un client qui se reconnecte. Si aucun client ne revient de lui-même, un petit nombre de trames deauth est envoyé aux clients vus sur ce BSSID pour forcer un nouveau handshake. Rien n’est envoyé tant que la capture n’est pas lancée.</string>
+    <string name="handshake_start">Lancer la capture du handshake</string>
+    <string name="handshake_running">Écoute sur le canal %1$d…</string>
+    <string name="handshake_stop">Arrêter la capture</string>
+    <string name="handshake_consent_title">Capture sur votre réseau</string>
+    <string name="handshake_consent_body">Ceci enregistre le handshake WPA de %1$s. Un petit nombre de trames deauth est envoyé aux clients vus sur ce réseau pour forcer un nouveau handshake. Le fichier est écrit dans le dossier choisi dans les réglages. Continuez seulement si ce réseau vous appartient ou si vous avez une autorisation écrite de le tester.</string>
+    <string name="handshake_consent_start">Lancer la capture</string>
+    <string name="handshake_saved">Enregistré dans %1$s</string>
+    <string name="handshake_partial">Capture enregistrée, mais aucun handshake complet observé : %1$s</string>
+    <string name="handshake_empty">Aucune trame pour ce réseau pendant la fenêtre. Un client doit se reconnecter ; rien n’a été enregistré.</string>
+    <string name="handshake_complete">Handshake complet : M%1$s</string>
+    <string name="handshake_messages">Messages EAPOL observés : %1$s</string>
+    <string name="handshake_copy_path">Copier le chemin</string>
+    <string name="handshake_path_copied">Chemin copié</string>
+    <string name="handshake_stats">%1$d trames · %2$d EAPOL · %3$d clients · %4$s</string>
+    <string name="handshake_deauth_stats">deauth %1$d/%2$d acquittés · %3$d salves</string>
+    <string name="handshake_success_title">Handshake complet capturé</string>
+    <string name="handshake_saved_title">Capture enregistrée</string>
+    <string name="handshake_failed_title">Échec de la capture</string>
+    <string name="handshake_success_sub">Enregistré dans %1$s</string>
+    <string name="handshake_stop_body">Arrête la capture. Aucune nouvelle tentative n’est effectuée après.</string>
+    <string name="handshake_log_title">Journal des opérations</string>
+    <string name="handshake_stage_title">Étapes</string>
+    <string name="handshake_target">%1$s · %2$s</string>
+    <string name="hs_stage_usb">Ouvrir l’adaptateur</string>
+    <string name="hs_stage_monitor">Réception monitor</string>
+    <string name="hs_stage_deauth">Deauth limité</string>
+    <string name="hs_stage_extract">Extraction EAPOL</string>
+    <string name="hs_stage_save">Enregistrer le pcap</string>
+    <string name="hs_detail_usb">Ouverture de l’adaptateur et lecture de ses descripteurs USB…</string>
+    <string name="hs_detail_monitor">Écoute sur le canal %1$d. Chaque trame du canal est lue.</string>
+    <string name="hs_detail_deauth">Envoi d’un petit nombre de trames deauth aux clients vus sur ce BSSID, pour les forcer à se reconnecter.</string>
+    <string name="hs_detail_extract">Extraction des EAPOL M1–M4 des trames capturées et association.</string>
+    <string name="hs_detail_saving">Écriture du pcap dans le dossier de handshakes choisi.</string>
+    <string name="hs_detail_done">Capture terminée. Le fichier est dans le dossier de handshakes choisi dans les réglages.</string>
+    <string name="hs_log_1">1/5 · Ouvrir l’adaptateur et régler le canal %1$d.</string>
+    <string name="hs_log_2">2/5 · Réception monitor brute : chaque trame du canal est lue.</string>
+    <string name="hs_log_3">3/5 · Envoi d’un deauth limité aux clients vus ici, pour forcer un nouveau handshake.</string>
+    <string name="hs_log_4">4/5 · Extraction des EAPOL M1–M4 des trames capturées.</string>
+    <string name="hs_log_5">5/5 · Écriture du pcap dans le dossier de handshakes choisi.</string>
+    <string name="sheet_capture">Capturer le handshake WPA</string>
+    <string name="sheet_capture_sub">Attendez qu’un client s’authentifie.</string>
+    <string name="sheet_attack">Attaque Pixie Dust</string>
+    <string name="sheet_attack_sub">Exploite la faille WPS.</string>
+    <string name="sheet_title">Détails du réseau</string>
+    <string name="details_clients">%1$d connected</string>
+    <string name="details_clients_none">No client seen</string>
+    <string name="success_title">Opération réussie</string>
+    <string name="success_psk">Le mot de passe Wi-Fi a été récupéré</string>
+    <string name="success_pin">Le PIN WPS a été récupéré</string>
+    <string name="success_hint">Conservé aussi dans l’historique privé de l’appli.</string>
+
+    <!-- ================= Modèle du routeur ================= -->
+    <string name="device_vendor_model">%1$s · %2$s</string>
+    <string name="result_table_model">Modèle</string>
+    <string name="result_model_unknown">Modèle inconnu</string>
+
+    <!-- ================= Validation du handshake ================= -->
+    <string name="handshake_valid_title">Handshake valide capturé</string>
+    <string name="handshake_valid_sub">Enregistré dans %1$s</string>
+    <string name="handshake_pair_line">Paire %1$s · %2$d paire(s) cassable(s) · client %3$s</string>
+    <string name="handshake_no_valid_title">Aucun handshake valide</string>
+    <string name="handshake_no_valid_sub">Rien n’a été enregistré. %1$s</string>
+    <string name="handshake_no_valid_reason">Aucune paire de handshake exploitable n’a été capturée.</string>
+
+    <!-- ================= Dialogues de réussite ================= -->
+    <string name="hs_dialog_title">Handshake enregistré</string>
+    <string name="hs_dialog_body">Un handshake complet a été validé puis écrit dans ce fichier.</string>
+    <string name="hs_dialog_open">Ouvrir le fichier</string>
+    <string name="hs_dialog_open_failed">Aucune application n’a pu ouvrir ce fichier. Le chemin a été copié.</string>
+    <string name="success_dialog_copy">Copier</string>
+
+    <!-- ================= Historique ================= -->
+    <string name="history_title">Historique</string>
+    <string name="cd_history">Historique</string>
+    <string name="history_empty_title">Rien d’enregistré</string>
+    <string name="history_empty_body">Les handshakes capturés et les réseaux dont le PIN ou le mot de passe a été récupéré apparaissent ici.</string>
+    <string name="history_clear">Effacer</string>
+    <string name="history_clear_confirm">Supprimer tout l’historique ?</string>
+    <string name="history_clear_body">Seule la liste est supprimée. Les fichiers pcap déjà enregistrés dans le dossier de handshakes ne sont pas effacés.</string>
+    <string name="history_type_handshake">Handshake</string>
+    <string name="history_type_credentials">PIN / mot de passe</string>
+    <string name="history_meta">%1$d trames · %2$d clients</string>
+    <string name="history_path">Fichier : %1$s</string>
+    <string name="history_pin">PIN : %1$s</string>
+    <string name="history_psk">Mot de passe : %1$s</string>
+    <string name="history_copied">Copié</string>
+</resources>

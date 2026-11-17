@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ralink / MediaTek -->
+    <usb-device vendor-id="5263" product-id="21360" />
+    <usb-device vendor-id="5263" product-id="21362" />
+    <usb-device vendor-id="5263" product-id="21874" />
+    <usb-device vendor-id="5263" product-id="12400" />
+    <usb-device vendor-id="5263" product-id="9584" />
+    <usb-device vendor-id="3725" product-id="30209" />
+    <usb-device vendor-id="5263" product-id="30209" />
+    <usb-device vendor-id="3725" product-id="30224" />
+    <usb-device vendor-id="3725" product-id="30226" />
+    <usb-device vendor-id="3725" product-id="31009" />
+    <usb-device vendor-id="3725" product-id="31013" />
+    <!-- Atheros -->
+    <usb-device vendor-id="3315" product-id="37489" />
+    <usb-device vendor-id="3315" product-id="28693" />
+    <!-- Realtek -->
+    <usb-device vendor-id="3034" product-id="33159" />
+    <usb-device vendor-id="3034" product-id="33160" />
+    <usb-device vendor-id="3034" product-id="33170" />
+    <usb-device vendor-id="3034" product-id="34834" />
+    <usb-device vendor-id="3034" product-id="34835" />
+    <usb-device vendor-id="3034" product-id="34849" />
+    <usb-device vendor-id="3034" product-id="34850" />
+    <usb-device vendor-id="3034" product-id="35106" />
+    <usb-device vendor-id="3034" product-id="51217" />
+    <usb-device vendor-id="3034" product-id="51234" />
+    <!-- TP-Link -->
+    <usb-device vendor-id="9047" product-id="265" />
+    <usb-device vendor-id="9047" product-id="268" />
+    <usb-device vendor-id="9047" product-id="311" />
+</resources>

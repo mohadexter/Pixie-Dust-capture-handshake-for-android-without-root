@@ -1,0 +1,25 @@
+# Gradle / build
+.gradle/
+.gradle-home/
+build/
+app/build/
+local.properties
+
+# Signing: never commit the key or its password
+*.jks
+*.keystore
+keystore.properties
+
+# IDE
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local verification artifacts and credentials
+badging*.txt
+KEYSTORE-INFO.txt
+

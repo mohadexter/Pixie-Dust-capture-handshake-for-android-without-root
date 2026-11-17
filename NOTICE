@@ -1,0 +1,38 @@
+pixie - PixieDust-only WPS auditor for Termux
+Copyright (C) 2026 pixie contributors
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; version 2 of the License.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License (LICENSE) for more
+details.
+
+--------------------------------------------------------------------------
+Third-party components
+--------------------------------------------------------------------------
+
+wifit3 (https://github.com/derv82/wifit3)
+    Copyright (C) derv82 and contributors.
+    Licensed under GPL-2.0-only.
+    The optional live path imports wifit3's USB driver layer and WSC codec at
+    runtime; it is not bundled with pixie.  Because pixie is distributed for
+    use together with wifit3, the combined work is licensed under GPL-2.0.
+
+pixiewps (https://github.com/wiire-a/pixiewps)
+    Licensed under GPL-3.0-or-later.
+    Optional, external binary (built by install.sh); pixie only invokes it.
+
+pyusb (https://github.com/pyusb/pyusb)
+    BSD-3-Clause.  Optional dependency of the live path, not bundled.
+
+libusb (https://libusb.info/)
+    Version 1.0.30, LGPL-2.1-or-later.  Bundled as prebuilt Android binaries
+    (app/src/main/jniLibs/arm64-v8a/libusb-1.0.so and
+    app/src/main/jniLibs/armeabi-v7a/libusb-1.0.so), taken unmodified from the
+    Termux project's official package repository (packages.termux.dev,
+    libusb_1.0.30_aarch64.deb and libusb_1.0.30_arm.deb, SHA-256 verified).
+    libusb is used as a shared library, loaded at runtime, so it can be
+    replaced by the user; the app's own code is not a derivative of it.

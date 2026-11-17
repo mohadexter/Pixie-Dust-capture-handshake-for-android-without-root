@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="screen_pad">20dp</dimen>
+    <dimen name="card_pad">18dp</dimen>
+    <dimen name="gap_xs">4dp</dimen>
+    <dimen name="gap_s">8dp</dimen>
+    <dimen name="gap_m">14dp</dimen>
+    <dimen name="gap_l">22dp</dimen>
+    <dimen name="gap_xl">32dp</dimen>
+    <dimen name="touch">48dp</dimen>
+    <dimen name="icon">24dp</dimen>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ink & paper -->
+    <color name="ink">#101828</color>
+    <color name="ink_soft">#475467</color>
+    <color name="ink_faint">#8A93A3</color>
+    <color name="paper">#FAF9F5</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="line">#E9E6DC</color>
+    <color name="line_strong">#D6D2C4</color>
+    <color name="mono_bg">#F4F2EA</color>
+
+    <!-- Accents -->
+    <color name="indigo">#3B36C9</color>
+    <color name="indigo_dark">#2A2699</color>
+    <color name="indigo_soft">#ECEBFB</color>
+    <color name="amber">#D98A00</color>
+    <color name="amber_soft">#FDF3DF</color>
+    <color name="green">#0E7A55</color>
+    <color name="green_soft">#E4F5EE</color>
+    <color name="red">#B42318</color>
+    <color name="red_soft">#FDECEA</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+</resources>
