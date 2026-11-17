@@ -18,6 +18,43 @@ The project is open source under GPL-2.0:
 
 ---
 
+## Android version support
+
+| Property | Value |
+|---|---|
+| `minSdk` | **24 — Android 7.0 (Nougat)** |
+| `targetSdk` / `compileSdk` | **36 — Android 16** |
+| ABIs | `arm64-v8a`, `armeabi-v7a` (ARM only, no x86, no emulator) |
+| Languages | English, French |
+| Theme | Light only |
+| Internet permission | None (the app cannot transmit anything) |
+
+The app runs on any Android phone from Android 7.0 up to Android 16, as long as the phone supports USB OTG and can power the adapter (high-power adapters may need a powered hub).
+
+---
+
+## Screenshots (real device)
+
+The following screenshots were taken on a real Android phone running Pixie Dust 1.0.5.
+
+![Scan screen](docs/screenshots/screen1.jpg)
+
+*The scan screen: app icon in the header, "Scan network" title, adapter status, network count and the empty state.*
+
+![Network detail sheet](docs/screenshots/screen2.jpg)
+
+*The network detail sheet with the two action cards side by side: "Capture WPA handshake" (green) and "PixieDust attack" (violet).*
+
+![Capture screen](docs/screenshots/screen3.jpg)
+
+*The capture screen: the five-stage stepper, the live operation log, and the single Start/Stop button.*
+
+![Success frame](docs/screenshots/screen4.jpg)
+
+*The small success frame over the screen, with the file path in heavier monospace text.*
+
+---
+
 ## What the app actually does
 
 Pixie Dust has two jobs, and it keeps them strictly separate.
@@ -34,13 +71,13 @@ The app performs **exactly one** attempt per run:
 4. The candidate is validated in a single **M4–M7** exchange.
 5. If the router accepts it, the same session asks for the passphrase, and the PSK comes back.
 
-There is no retry loop. If the router rejects the attempt, or if it is not vulnerable at all, the app says so and stops. That single-attempt rule is deliberate: it is both the ethical boundary and the technical one, since modern routers lock WPS after a handful of failures.
+There is no retry loop. If the router rejects the attempt, or if it is not vulnerable at all, the app says so and stops.
 
 ### 2. WPA 4-way handshake capture
 
 The second job is the classic one. The app tunes to the target network, listens to the channel, and waits for a client to authenticate so it can record the four-way handshake. If no client reconnects on its own, a **bounded and targeted** deauthentication burst nudges the clients already observed on that BSSID into reconnecting.
 
-The important part is what happens next. A capture is only reported as a success if the bundled validator finds a **crackable pair** — an actual M1/M2 pair from the same session. If no valid pair was found, no `.pcap` file is written at all.
+A capture is only reported as a success if the bundled validator finds a **crackable pair** — an actual M1/M2 pair from the same session.
 
 ---
 
@@ -76,27 +113,43 @@ The application is deliberately conservative about its dependencies. It uses pla
 
 The single most important design decision is that **exactly one thread ever talks to the USB device**. The engine runs on a dedicated `pixie-engine` thread, and every operation — scan, capture, WPS attempt — is serialised through it.
 
-The UI never blocks on the engine. It reads a single observable state object (`Repo`) and redraws. Because the update callback is posted to the main thread, there is no locking in the UI code and no chance of touching a View from a background thread.
+The UI never blocks on the engine. It reads a single observable state object (`Repo`) and redraws.
 
 ### Getting libusb to work on Android without root
 
 On a desktop, libusb opens a device by path. On Android, the USB device node under `/dev/bus/usb/` is not readable by an ordinary app. An app *can* get a **file descriptor** from the system, after the user grants permission through the standard OTG dialog.
 
-The bridge therefore hands libusb an already-open descriptor instead of a device path, and lets libusb wrap it. The bundled `libusb_fd.py` module handles that handover and the platform quirks. The notable one is `libusb_get_configuration` failing with `Operation not permitted` on some chipset/phone combinations, which the module works around.
+The bridge therefore hands libusb an already-open descriptor instead of a device path, and lets libusb wrap it. The bundled `libusb_fd.py` module handles that handover and the platform quirks, including `libusb_get_configuration` failing with `Operation not permitted` on some chipset/phone combinations.
 
-There is a second, less obvious problem: native libraries must exist as **real files on disk**, not inside the APK's zip. The build is configured with `useLegacyPackaging = true` to force extraction at install time, because the Python binding loads libusb with `ctypes.CDLL(<nativeLibraryDir>/libusb-1.0.so)`.
-
-The Python packages that carry firmware blobs are likewise extracted rather than imported from the archive, because the drivers read them as files.
+Native libraries must exist as **real files on disk**, not inside the APK's zip. The build is configured with `useLegacyPackaging = true` so libusb is extracted at install time.
 
 ### Supported hardware
 
-| Group | Chipset | Adapter | Bands |
+The driver stack covers a wide range of USB adapters. The **Bands** column is the single most useful piece of information for a buyer: it tells you whether the adapter can reach 5 GHz and 6 GHz networks or is limited to 2.4 GHz.
+
+| Group | Chipset | Adapter / variant | Bands |
 |---|---|---|---|
-| Ralink | RT5370 / RT5372 / RT5572 / RT3070 / RT2570 | — | 2.4 / 2.4-5 |
-| MediaTek | MT7601U / MT7610U / MT7612U / MT7921AU / MT7925U | — | 2.4 / 2.4-5 / 2.4-5-6 |
-| Atheros | AR9271 | AWUS036NHA | 2.4 GHz |
-| Realtek | RTL8187 / RTL8188 / RTL8192 / RTL8812AU / RTL8814AU / RTL8821AU / RTL8822BU / RTL8922AU / RTL8811CU / RTL8822CU | — | 2.4 / 2.4-5 / … |
-| TP-Link | RTL8192EU / RTL8188 / Archer T2U Plus | TL-WN823N, TL-WN722N, Archer T2U Plus | 2.4 / 2.4-5 |
+| Ralink | RT5370 | — | **2.4 GHz only** |
+| Ralink | RT5372 | — | 2.4 / 5 GHz |
+| Ralink | RT5572 | MIMO | 2.4 / 5 GHz |
+| Ralink | RT3070 | high power | **2.4 GHz only** |
+| Ralink | RT2570 | legacy | **2.4 GHz only** |
+| MediaTek | MT7601U | (Ralink id) | **2.4 GHz only** |
+| MediaTek | MT7610U | AC600 | 2.4 / 5 GHz |
+| MediaTek | MT7612U | AC1200 | 2.4 / 5 GHz |
+| MediaTek | MT7921AU | Wi-Fi 6 | 2.4 / 5 GHz |
+| MediaTek | MT7925U | Wi-Fi 7 | **2.4 / 5 / 6 GHz** |
+| Atheros | AR9271 | AWUS036NHA | **2.4 GHz only** |
+| Realtek | RTL8187 / RTL8188EUS / RTL8192FU | — | **2.4 GHz only** |
+| Realtek | RTL8812AU | AWUS036ACH | 2.4 / 5 GHz |
+| Realtek | RTL8814AU | AC1900 | 2.4 / 5 GHz |
+| Realtek | RTL8821AU | AC600 | 2.4 / 5 GHz |
+| Realtek | RTL8822BU | AC1200 | 2.4 / 5 GHz |
+| Realtek | RTL8922AU | Wi-Fi 7 | **2.4 / 5 / 6 GHz** |
+| Realtek | RTL8811CU / RTL8822CU | — | 2.4 / 5 GHz |
+| TP-Link | RTL8192EU | TL-WN823N v2/v3 | **2.4 GHz only** |
+| TP-Link | RTL8188EUS | TL-WN722N v2/v3 | **2.4 GHz only** |
+| TP-Link | Archer T2U Plus | — | 2.4 / 5 GHz |
 
 Only ARM is shipped — `arm64-v8a` and `armeabi-v7a`.
 
@@ -124,7 +177,7 @@ The app is designed to be usable by someone who has never run a Wi-Fi audit befo
 | 4 | Extract EAPOL | Pull EAPOL M1–M4 out of the captured frames and pair them. |
 | 5 | Save pcap | Write the pcap to the chosen handshake folder. |
 
-A capture is bounded to a fixed window (`CAPTURE_SECONDS = 120).
+A capture is bounded to a fixed window (`CAPTURE_SECONDS = 120`).
 
 ---
 
@@ -132,28 +185,19 @@ A capture is bounded to a fixed window (`CAPTURE_SECONDS = 120).
 
 - The pcap is written only after the bundled validator confirms a crackable pair.
 - The published path is `Download/<handshake folder>/<name>.pcap`.
-- The capture log lines are *"Complete handshake saved: …"* / *"Partial capture saved: …"*.
-- The EAPOL payload is labelled per message: `handshake_complete` reports `M<message number>`.
-
-For offline analysis, the pcap uses linktype `105`, so it can be read with `hcxpcapngtool` and then fed to
-`hashcat -m 22000`.
+- For offline analysis, the pcap uses linktype `105`, so it can be read with `hcxpcapngtool` and then fed to `hashcat -m 22000`.
 
 ---
 
 ## The error taxonomy
 
-- `no_m1` is never shown as "wrong PIN". It is surfaced as *"the router did not start a WPS session"*, and the
-  attempt is stopped rather than retried.
-
-The old behaviour could tell a user their PIN was wrong when the real problem was that no session ever started.
-The new behaviour stops the run and leaves the user with an accurate statement.
+- `no_m1` is never shown as "wrong PIN". It is surfaced as *"the router did not start a WPS session"*.
 
 ---
 
 ## The result and history
 
-- Recovered values (WPS PIN and Wi-Fi password) are shown together on the result screen, in one success frame
-  with a short vibration, a heavier monospace line, and a single copy action.
+- Recovered values (WPS PIN and Wi-Fi password) are shown together on the result screen, in one success frame with a short vibration, a heavier monospace line, and a single copy action.
 
 ---
 
