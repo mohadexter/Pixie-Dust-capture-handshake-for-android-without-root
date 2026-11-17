@@ -1,5 +1,7 @@
 # Pixie Dust — Project README
 
+> **Read the article:** [Pixie Dust: Auditing WPS and WPA Security from an Android Phone, Without Root](ARTICLE.md) — a full technical write-up covering the architecture, the libusb-on-Android work, the interface, the safety rules and the honest limits of the project.
+
 ## Short description
 
 **Pixie Dust** is a security app for Android that audits the security of **WPS** (Wi-Fi Protected Setup) on wireless networks over a **USB OTG** port.
