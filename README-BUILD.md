@@ -1,4 +1,4 @@
-# Pixie Dust — دليل البناء
+﻿# Pixie Dust — دليل البناء
 
 هذا المشروع تطبيق Android مكتوب بـ **Java** (بلا Kotlin، بلا Compose) مع محرك
 Pixie Dust الأصلي بلغة **Python** عبر **Chaquopy**. الواجهة كلها views عادية،
@@ -168,4 +168,4 @@ app/src/main/python/         المحرك: pixie, wifit3, pixie_android
 
 ## 8. الترخيص
 
-GPL-3.0. النص الكامل في `LICENSE` و`NOTICE` مع الأرشيف.
+GPL-2.0. النص الكامل في `LICENSE` و`NOTICE` مع الأرشيف.

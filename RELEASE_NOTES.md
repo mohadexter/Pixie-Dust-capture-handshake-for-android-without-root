@@ -1,4 +1,4 @@
-# Pixie Dust 1.0.5 — Handshake Folder, Signal Sorting, Live Clients
+﻿# Pixie Dust 1.0.5 — Handshake Folder, Signal Sorting, Live Clients
 
 Release number: 1.0.5 (versionCode 6).
 
@@ -40,7 +40,7 @@ English and French and removes the visible third-party product name.
 6. **No visible third-party branding**
    - The `MONITOR` pill above the network list is gone.
    - The About screen no longer displays the bundled validator's project name.
-   - License and NOTICE files still ship with the source and satisfy the GPL-3.0
+   - License and NOTICE files still ship with the source and satisfy the GPL-2.0
      obligations; internal use of the validator in code is unchanged.
 
 7. **Handshake validation unchanged and safe**

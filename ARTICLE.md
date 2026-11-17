@@ -1,4 +1,4 @@
-# Pixie Dust: Auditing WPS and WPA Security from an Android Phone, Without Root
+﻿# Pixie Dust: Auditing WPS and WPA Security from an Android Phone, Without Root
 
 *A technical walkthrough of a native Android app that runs a complete USB Wi-Fi security audit on a phone, with no root, no `wpa_supplicant`, and no internet permission.*
 
@@ -12,7 +12,7 @@ Phones are the opposite: always with you, always charged, and — thanks to USB 
 
 **Pixie Dust** is an attempt to fill that gap. It is a single Android application, written in Java with an embedded Python engine, that brings a WPS audit and a WPA handshake capture to an ordinary phone. It does not require root, it does not touch `wpa_supplicant`, and it cannot send anything over the network, because it does not even request the `INTERNET` permission.
 
-The project is open source under GPL-3.0:
+The project is open source under GPL-2.0:
 
 **https://github.com/mohadexter/Pixie-Dust-for-android-without-root**
 
@@ -209,6 +209,6 @@ The full source, build instructions, release notes and the signed APK are here:
 
 **https://github.com/mohadexter/Pixie-Dust-for-android-without-root**
 
-GPL-3.0. Java and XML for the interface, Python for the engine, libusb for the radio, and no root anywhere in the stack.
+GPL-2.0. Java and XML for the interface, Python for the engine, libusb for the radio, and no root anywhere in the stack.
 
 If you build it, test it on your own hardware and your own network. That is the only testing that counts.
