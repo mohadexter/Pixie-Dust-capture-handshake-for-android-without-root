@@ -1,5 +1,7 @@
 ﻿# Pixie Dust — Project README
 
+![Pixie Dust social preview](docs/social-preview.png)
+
 > **Read the article:** [Pixie Dust: Auditing WPS and WPA Security from an Android Phone, Without Root](ARTICLE.md) — a full technical write-up covering the architecture, the libusb-on-Android work, the interface, the safety rules and the honest limits of the project.
 
 ## Purpose and ethics
@@ -55,8 +57,6 @@ Physical testing with an Android phone and a supported USB OTG Wi-Fi adapter is 
 ---
 
 ## Full article (technical write-up)
-
-![Pixie Dust social preview](docs/social-preview.png)
 
 # Pixie Dust: Auditing WPS and WPA Security from an Android Phone, Without Root
 
