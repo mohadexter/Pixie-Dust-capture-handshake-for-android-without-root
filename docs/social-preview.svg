@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#101828"/>
+      <stop offset="100%" stop-color="#1a2332"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.18" cy="0.5" r="0.45">
+      <stop offset="0%" stop-color="#3B36C9" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#101828" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect width="1280" height="640" fill="url(#glow)"/>
+
+  <!-- subtle dot grid -->
+  <g fill="#ffffff" fill-opacity="0.04">
+    <circle cx="40" cy="40" r="1.5"/><circle cx="80" cy="40" r="1.5"/><circle cx="120" cy="40" r="1.5"/>
+    <circle cx="40" cy="80" r="1.5"/><circle cx="80" cy="80" r="1.5"/><circle cx="120" cy="80" r="1.5"/>
+    <circle cx="40" cy="120" r="1.5"/><circle cx="80" cy="120" r="1.5"/><circle cx="120" cy="120" r="1.5"/>
+    <circle cx="1160" cy="520" r="1.5"/><circle cx="1200" cy="520" r="1.5"/><circle cx="1240" cy="520" r="1.5"/>
+    <circle cx="1160" cy="560" r="1.5"/><circle cx="1200" cy="560" r="1.5"/><circle cx="1240" cy="560" r="1.5"/>
+    <circle cx="1160" cy="600" r="1.5"/><circle cx="1200" cy="600" r="1.5"/><circle cx="1240" cy="600" r="1.5"/>
+  </g>
+
+  <!-- app icon (rounded square) -->
+  <g transform="translate(140,160)">
+    <rect width="320" height="320" rx="64" ry="64" fill="#101828"/>
+    <rect width="320" height="320" rx="64" ry="64" fill="none" stroke="#3B36C9" stroke-width="2" stroke-opacity="0.4"/>
+    <!-- Wi-Fi signal arc -->
+    <path d="M80,140 C130,90 190,80 240,110" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+    <!-- dust particles -->
+    <circle cx="95" cy="230" r="14" fill="#F5A524"/>
+    <circle cx="135" cy="190" r="10" fill="#FFC457"/>
+    <circle cx="165" cy="155" r="7" fill="#FFD98A"/>
+  </g>
+
+  <!-- title -->
+  <text x="520" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="84" font-weight="700" fill="#FFFFFF">Pixie Dust</text>
+
+  <!-- subtitle -->
+  <text x="520" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#9CA3AF">WPS &amp; WPA security audit on Android, without root</text>
+
+  <!-- tagline -->
+  <text x="520" y="372" font-family="Consolas, monospace" font-size="20" fill="#6B7280">Java + Python 3.11 + libusb 1.0.30 over USB OTG</text>
+
+  <!-- badges -->
+  <g transform="translate(520,410)">
+    <rect width="150" height="34" rx="17" fill="#1F2937"/>
+    <text x="75" y="23" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#10B981" text-anchor="middle">ARM only</text>
+    <rect x="165" width="170" height="34" rx="17" fill="#1F2937"/>
+    <text x="250" y="23" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#8B5CF6" text-anchor="middle">No INTERNET perm</text>
+    <rect x="350" width="130" height="34" rx="17" fill="#1F2937"/>
+    <text x="415" y="23" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#F59E0B" text-anchor="middle">GPL-2.0</text>
+  </g>
+
+  <!-- footer -->
+  <text x="520" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4B5563">github.com/mohadexter/Pixie-Dust-for-android-without-root</text>
+</svg>
