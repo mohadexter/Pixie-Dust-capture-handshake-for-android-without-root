@@ -114,94 +114,74 @@ The interface is available in **English and French** only, and it is light-theme
 
 ---
 
-## Storage, privacy and the missing permission
+## The five-stage capture pipeline
 
-Recovered data is written to `Download/Hanshake` by default, not to `Android/data`, so a user can find the files with an ordinary file manager. A Settings screen allows choosing another system folder — the app uses the Storage Access Framework, so no storage permission is requested on modern Android — or a custom folder name.
+The capture screen drives a single, clearly narrated operation. The stage titles and their plain-language
+descriptions are part of the UI strings themselves, so what the user sees is always the same thing the code
+does:
 
-Files saved this way are handed back to the user as a content URI, which is what makes the **Open file** button work without exposing the filesystem. Where no URI exists, a narrowly scoped `FileProvider` covers `Download/` and the staging cache.
+| Stage | Title (EN) | What the code does |
+|---|---|---|
+| 1 | Open the adapter | Open the USB adapter and tune to the target channel. |
+| 2 | Monitor RX | Raw monitor receive: every frame on that channel is read. |
+| 3 | Bounded deauth | Send a small number of deauth frames to clients seen on this BSSID. |
+| 4 | Extract EAPOL | Pull EAPOL M1–M4 out of the captured frames and pair them. |
+| 5 | Save pcap | Write the pcap to the chosen handshake folder. |
 
-The privacy posture is simple and verifiable:
+The operation log prints the same five steps as numbered notes. The stepper view renders a six-position
+sequence (adapter, capture, PIN search, verify, PSK, done) while the capture flow itself runs its own
+five-stage sequence.
 
-- **No `INTERNET` permission.** Not a policy, a manifest fact. The application physically cannot transmit anything.
-- The history of recovered PINs and passphrases is stored in app-private storage and can be erased from the History screen.
-- Credentials are never written to logcat.
-- A disclaimer is accepted once at first launch, and every operation needs an explicit confirmation before it runs.
+### The window and the nudge
 
----
+A capture is bounded to a fixed window (`CAPTURE_SECONDS = 120`). Nothing is sent to the network unless the
+user starts the capture, and the consent dialog is shown before the first frame is transmitted:
 
-## Safety rules, encoded rather than promised
+> "Capture on your network — This records the WPA handshake of %s. It sends a small number of deauth frames to clients seen on this network to force a re-handshake. Continue only if you own this network or have written permission to test it."
 
-A security tool is only as good as the constraints it enforces on itself. In this codebase those constraints are structural:
+The deauth phase is deliberately small: it measures how many frames were sent, how many were acknowledged,
+and how many bursts were needed, and it is aimed only at clients already observed on that BSSID.
 
-| Rule | Where it lives |
-|---|---|
-| One WPS attempt per run, no automatic retries | `auto_attack(..., auto_verify)` in the engine |
-| No OneShot, no online PIN guessing, no PBC/WEP | Not implemented anywhere in the engine |
-| Bounded, targeted deauth — never a flood | Deauth targets only clients observed on that BSSID, in a short burst |
-| No pcap unless a crackable pair is validated | `Repo` publishes the file only after the validator agrees |
-| `no_m1` reported as "the router did not start a WPS session" | `PixieError` mapping — never as "wrong PIN" |
-| Application must be in the foreground to keep working | Foreground service with an explicit notification |
+### What gets reported as a result
 
-That last row deserves a note. The engine runs inside a foreground service with a wake lock and a persistent notification. If the process is killed, the USB session dies with it, so the app makes that state visible instead of silently continuing to show a stale progress bar.
+The UI distinguishes four honest outcomes:
 
----
+1. **Complete handshake captured** — a crackable pair was found. The screen shows frames, EAPOL messages,
+   client, pair and crackable-pair count.
+2. **Capture saved, but no complete handshake was seen** — a file was written, but it is not a success.
+3. **No frame for this network during the window** — nothing was captured, nothing was saved.
+4. **Capture failed** — an error was reported instead of a check mark.
 
-## Build and verification
+The success banner is only shown when the validator returned a real pair; a warning icon is used when the
+capture failed or when no valid pair was found.
 
-The project builds a signed release APK with the Gradle wrapper:
+## The file that gets written
 
-```powershell
-$env:JAVA_HOME="C:\Java\jdk-21.0.13+9"
-$env:PATH="C:\Python311;C:\Python311\Scripts;$env:PATH"
-.\gradlew.bat :app:assembleRelease
-```
+- The pcap is written only after the bundled validator confirms a crackable pair. A partial capture may be
+  stored, but a partial capture is never presented as a valid handshake.
+- The published path is `Download/<handshake folder>/<name>.pcap`.
+- The capture log lines are *"Complete handshake saved: …"* / *"Partial capture saved: …"*.
+- The EAPOL payload is labelled per message: `handshake_complete` reports `M<message number>`.
 
-Requirements: JDK 17 or newer, Android SDK platform 36 with build tools 36, and **Python 3.11** — Chaquopy 17.2 pins 3.11 for the 32-bit ARM target, so a newer interpreter will not do.
+For offline analysis, the pcap uses linktype `105`, so it can be read with `hcxpcapngtool` and then fed to
+`hashcat -m 22000`.
 
-The output is verified with the standard tooling rather than assumed to be correct:
+## The error taxonomy
 
-```
-$ apksigner verify --print-certs app-release.apk
-Signer #1 certificate DN: CN=Pixie Dust, OU=Mobile, O=PixieDust, L=Casablanca, ...
-Signer #1 certificate SHA-256 digest: 18fab90662b96344e4548c36bcc5eebbb...
-Verified using v2 scheme (APK Signature Scheme v2): true
+The engine reports a small, closed set of failure kinds, and the UI maps them carefully:
 
-$ aapt2 dump badging app-release.apk
-package: name='ma.pixiedust.app' versionCode='6' versionName='1.0.5'
-native-code: 'arm64-v8a' 'armeabi-v7a'
-```
+- `no_m1` is never shown as "wrong PIN". It is surfaced as *"the router did not start a WPS session"*, and the
+  attempt is stopped rather than retried.
 
-The release is minified with R8 and resource-shrunk. The APK lands around 30 MB, most of which is Python 3.11, the driver stack, and firmware blobs for the supported chipsets.
+The old behaviour could tell a user their PIN was wrong when the real problem was that no session ever started.
+The new behaviour stops the run and leaves the user with an accurate statement.
 
----
+## The result and history
 
-## An honest list of limits
-
-No security project is complete without saying what it does not do, and this one has meaningful limits.
-
-**It has not been validated on a physical phone with an OTG adapter in the development environment.** The build compiles, the APK is signed and installs, and the UI runs — but radio behaviour, actual frame capture, deauth delivery and handshake validation on real hardware are separate questions. Until they are tested on a device, the app should be treated as a working build, not a proven tool. The README says exactly this, on purpose.
-
-**WPS success depends on the router.** Pixie Dust exploits weakness in a specific class of random number generators. Many modern routers use protections that defeat it outright, and some lock WPS permanently after a few failures. A failed attempt is the normal outcome on current hardware.
-
-**Capture success depends on traffic.** A network with no clients, or with clients that never reconnect, will not yield a handshake. The deauth nudge helps but cannot create traffic that is not there.
-
-**Client counting is an estimate.** The number shown comes from unicast MAC addresses observed in data frames on the channel. It is not a query to the router's association table, and it will not match what the router's admin page reports.
-
-**Phone radios cannot do this.** The built-in Wi-Fi chipset does not expose monitor mode to applications. The app is only useful with a supported USB adapter and an OTG cable, and the phone must be able to power that adapter — high-power adapters may need a powered hub.
-
----
-
-## What building this taught me
-
-Three lessons stand out.
-
-**Android is a viable host for serious RF tooling.** The file-descriptor route into libusb removes the root requirement entirely, and once that works, the phone becomes a legitimate platform rather than a toy. The remaining friction is power delivery and thermal headroom, not permissions.
-
-**Refusing to report false success is a feature.** Requiring a validated handshake pair before writing a file costs a little complexity and removes an enormous amount of user confusion. The same principle applies to the WPS side, where reporting `no_m1` as "the router did not start a WPS session" instead of "wrong PIN" changes what the user does next.
-
-**Constraint is what makes a security tool trustworthy.** One attempt. One thread on the radio. No internet permission. A visible confirmation before anything is transmitted. None of these make the app more capable — they make it something a person can responsibly run on their own network.
-
----
+- Recovered values (WPS PIN and Wi-Fi password) are shown together on the result screen, in one success frame
+  with a short vibration, a heavier monospace line, and a single copy action.
+- The handshake entry in history keeps `complete`, `valid_pairs`, `eapol_frames`, `frames` and the pair/client
+  identifiers, so a previous run can be re-examined without re-capturing.
 
 ## The code
 
