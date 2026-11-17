@@ -37,7 +37,7 @@
   </g>
 
   <!-- title -->
-  <text x="440" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="700" fill="#FFFFFF">Pixie Wps <tspan fill="#10B981">No Root</tspan></text>
+  <text x="440" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="700" fill="#FFFFFF">Pixie WPS <tspan fill="#10B981">No Root</tspan></text>
 
   <!-- subtitle (two lines, inside the frame) -->
   <text x="440" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#9CA3AF">WPS &amp; capture handshake security audit</text>
