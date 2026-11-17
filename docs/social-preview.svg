@@ -25,40 +25,41 @@
   </g>
 
   <!-- app icon (rounded square) -->
-  <g transform="translate(140,160)">
-    <rect width="320" height="320" rx="64" ry="64" fill="#101828"/>
-    <rect width="320" height="320" rx="64" ry="64" fill="none" stroke="#3B36C9" stroke-width="2" stroke-opacity="0.4"/>
+  <g transform="translate(120,190)">
+    <rect width="260" height="260" rx="52" ry="52" fill="#101828"/>
+    <rect width="260" height="260" rx="52" ry="52" fill="none" stroke="#3B36C9" stroke-width="2" stroke-opacity="0.4"/>
     <!-- Wi-Fi signal arc -->
-    <path d="M80,140 C130,90 190,80 240,110" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+    <path d="M60,110 C100,70 160,60 200,85" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
     <!-- dust particles -->
-    <circle cx="95" cy="230" r="14" fill="#F5A524"/>
-    <circle cx="135" cy="190" r="10" fill="#FFC457"/>
-    <circle cx="165" cy="155" r="7" fill="#FFD98A"/>
+    <circle cx="75" cy="185" r="12" fill="#F5A524"/>
+    <circle cx="110" cy="150" r="9" fill="#FFC457"/>
+    <circle cx="135" cy="120" r="6" fill="#FFD98A"/>
   </g>
 
   <!-- title -->
-  <text x="520" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="84" font-weight="700" fill="#FFFFFF">Pixie Dust</text>
+  <text x="440" y="270" font-family="Segoe UI, Arial, sans-serif" font-size="84" font-weight="700" fill="#FFFFFF">Pixie Dust</text>
 
-  <!-- subtitle -->
-  <text x="520" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#9CA3AF">WPS &amp; capture handshake security audit on Android, without root</text>
+  <!-- subtitle (two lines, inside the frame) -->
+  <text x="440" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#9CA3AF">WPS &amp; capture handshake security audit</text>
+  <text x="440" y="352" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#9CA3AF">on Android, without root</text>
 
   <!-- tagline -->
-  <text x="520" y="372" font-family="Consolas, monospace" font-size="20" fill="#6B7280">Java + Python 3.11 + libusb 1.0.30 over USB OTG</text>
+  <text x="440" y="395" font-family="Consolas, monospace" font-size="18" fill="#6B7280">Java + Python 3.11 + libusb 1.0.30 over USB OTG</text>
 
   <!-- usage hint (two lines, inside the frame) -->
-  <text x="520" y="405" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#4B5563">Plug a USB Wi-Fi adapter via OTG,</text>
-  <text x="520" y="428" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#4B5563">then scan, capture or audit.</text>
+  <text x="440" y="425" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4B5563">Plug a USB Wi-Fi adapter via OTG, then scan,</text>
+  <text x="440" y="448" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4B5563">capture or audit your own network.</text>
 
   <!-- badges -->
-  <g transform="translate(520,460)">
-    <rect width="150" height="34" rx="17" fill="#1F2937"/>
-    <text x="75" y="23" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#10B981" text-anchor="middle">ARM only</text>
-    <rect x="165" width="170" height="34" rx="17" fill="#1F2937"/>
-    <text x="250" y="23" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#8B5CF6" text-anchor="middle">No INTERNET perm</text>
-    <rect x="350" width="130" height="34" rx="17" fill="#1F2937"/>
-    <text x="415" y="23" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#F59E0B" text-anchor="middle">GPL-2.0</text>
+  <g transform="translate(440,480)">
+    <rect width="130" height="32" rx="16" fill="#1F2937"/>
+    <text x="65" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#10B981" text-anchor="middle">ARM only</text>
+    <rect x="145" width="160" height="32" rx="16" fill="#1F2937"/>
+    <text x="225" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#8B5CF6" text-anchor="middle">No INTERNET perm</text>
+    <rect x="320" width="110" height="32" rx="16" fill="#1F2937"/>
+    <text x="375" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#F59E0B" text-anchor="middle">GPL-2.0</text>
   </g>
 
   <!-- footer -->
-  <text x="520" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4B5563">github.com/mohadexter/Pixie-Dust-for-android-without-root</text>
+  <text x="440" y="560" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#4B5563">github.com/mohadexter/Pixie-Dust-for-android-without-root</text>
 </svg>
