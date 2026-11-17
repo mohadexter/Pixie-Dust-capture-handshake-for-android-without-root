@@ -41,7 +41,7 @@
 
   <!-- subtitle (two lines, inside the frame) -->
   <text x="440" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#9CA3AF">WPS &amp; capture handshake security audit</text>
-  <text x="440" y="352" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#9CA3AF">on Android, without root</text>
+  <text x="440" y="352" font-family="Segoe UI, Arial, sans-serif" font-size="26" fill="#9CA3AF">on Android, without root, <tspan fill="#10B981" font-weight="700">WITH OTG</tspan></text>
 
   <!-- tagline -->
   <text x="440" y="395" font-family="Consolas, monospace" font-size="18" fill="#6B7280">Java + Python 3.11 + libusb 1.0.30 over USB OTG</text>
