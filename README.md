@@ -56,6 +56,8 @@ Physical testing with an Android phone and a supported USB OTG Wi-Fi adapter is 
 
 ## Full article (technical write-up)
 
+![Pixie Dust social preview](docs/social-preview.png)
+
 # Pixie Dust: Auditing WPS and WPA Security from an Android Phone, Without Root
 
 *A technical walkthrough of a native Android app that runs a complete USB Wi-Fi security audit on a phone, with no root, no `wpa_supplicant`, and no internet permission.*
