@@ -45,11 +45,12 @@
   <!-- tagline -->
   <text x="520" y="372" font-family="Consolas, monospace" font-size="20" fill="#6B7280">Java + Python 3.11 + libusb 1.0.30 over USB OTG</text>
 
-  <!-- usage hint -->
-  <text x="520" y="400" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#4B5563">Plug a supported USB Wi-Fi adapter via OTG, then scan, capture or audit.</text>
+  <!-- usage hint (two lines, inside the frame) -->
+  <text x="520" y="405" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#4B5563">Plug a USB Wi-Fi adapter via OTG,</text>
+  <text x="520" y="428" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#4B5563">then scan, capture or audit.</text>
 
   <!-- badges -->
-  <g transform="translate(520,440)">
+  <g transform="translate(520,460)">
     <rect width="150" height="34" rx="17" fill="#1F2937"/>
     <text x="75" y="23" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#10B981" text-anchor="middle">ARM only</text>
     <rect x="165" width="170" height="34" rx="17" fill="#1F2937"/>
