@@ -5,11 +5,11 @@ Pixie Dust الأصلي بلغة **Python** عبر **Chaquopy**. الواجهة 
 وخدمة واحدة في الخلفية، والتصميم فاتح فقط.
 
 - Package / applicationId: `ma.pixiedust.app`
-- Version: `1.0.5` (versionCode `6`)
+- Version: `1.0.7` (versionCode `8`)
 - minSdk `24` / targetSdk `36` / compileSdk `36`
 - ABIs: `arm64-v8a` + `armeabi-v7a` فقط (بلا x86 وبلا محاكي)
 - اللغات: English / Français
-- بلا إذن `INTERNET` — لا يخرج أي شيء من الهاتف
+- إذن `INTERNET` مخصص فقط لفحص التحديث الاختياري وتنزيل الـ APK؛ بيانات الالتقاط لا تُرسل أبدًا
 
 ---
 
@@ -98,9 +98,9 @@ $bt="C:\Android\Sdk\build-tools\36.0.0"
 المتوقع:
 
 - `Verifies` و`Verified using v2 scheme (APK Signature Scheme v2): true`
-- package `ma.pixiedust.app`، versionCode `4`، versionName `1.0.3`
+- package `ma.pixiedust.app`، versionCode `8`، versionName `1.0.7`
 - `native-code: 'arm64-v8a' 'armeabi-v7a'`
-- locales تتضمن `ar`, `en`, `fr`
+- locales تتضمن `en`, `fr`
 
 ---
 
@@ -159,7 +159,7 @@ app/src/main/python/         المحرك: pixie, wifit3, pixie_android
   لا يُنشأ ملف pcap. الملفات المحفوظة بصيغة linktype 105 (لقراءتها بـ
   `hcxpcapngtool` ثم `hashcat -m 22000`).
 - سجل النتائج محلي وخاص بالتطبيق، ويشمل المصافحات المتحقق منها والـ PIN/كلمات المرور
-  المستعادة. لا يملك التطبيق إذن INTERNET، ويمكن مسح السجل من شاشة History.
+  المستعادة. لا يُرسل السجل أبدًا؛ الشبكة تُستعمل فقط لفحص التحديث الاختياري، ويمكن مسح السجل من شاشة History.
 - عدّاد العملاء تقديري: يعتمد على عناوين MAC أحادية الإرسال في إطارات البيانات
   المرصودة، لا على استعلام للموجّه.
 - حجم الـ APK نحو 30 MB لأنه يضم Python 3.11 والمحرك والـ firmware.
