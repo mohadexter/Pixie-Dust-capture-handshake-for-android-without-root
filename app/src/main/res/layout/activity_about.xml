@@ -224,6 +224,18 @@
                 app:iconSize="18dp"
                 app:iconTint="@color/indigo" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSupportProject"
+                style="@style/Widget.PixieDust.Button.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/about_support_project"
+                app:icon="@drawable/ic_coin_btc"
+                app:iconGravity="textStart"
+                app:iconSize="18dp"
+                app:iconTint="@color/indigo" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

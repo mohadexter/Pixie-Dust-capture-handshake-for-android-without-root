@@ -31,6 +31,8 @@ public class AboutActivity extends AppCompatActivity {
                 Ui.toast(this, R.string.support_no_browser);
             }
         });
+        b.btnSupportProject.setOnClickListener(v ->
+                startActivity(new Intent(this, SupportActivity.class)));
         b.versionText.setText(getString(R.string.about_version, versionName()));
     }
 

@@ -243,6 +243,25 @@ By continuing you confirm that you understand this and that you have the right t
     <string name="about_check_updates">Check for updates</string>
     <string name="about_release_notes">Release notes</string>
     <string name="about_telegram_support">Join Telegram support</string>
+    <string name="about_support_project">Support the project</string>
+
+    <!-- ================= Support / donations ================= -->
+    <string name="support_title">Support the project</string>
+    <string name="support_body">If Pixie Dust is useful to you, you can help keep it independent: copy an address below and send any amount. Thank you.</string>
+    <string name="support_copy">Copy</string>
+    <string name="support_copied">Address copied</string>
+    <string name="support_telegram">Join Telegram support</string>
+    <string name="support_note">Addresses are shown for information only. Pixie Dust never asks for a payment to unlock a feature.</string>
+    <string name="support_btc">Bitcoin (BTC)</string>
+    <string name="support_btc_address">bc1qkcxl9wssq0ulfkapshupu6s4p9m9spyypgyudw</string>
+    <string name="support_eth">Ethereum (ETH)</string>
+    <string name="support_eth_address">0x785D5A5a29FC25D7460095f8c09CEC4C6c10c8e0</string>
+    <string name="support_ltc">Litecoin (LTC)</string>
+    <string name="support_ltc_address">ltc1qpsn499zgzu9sqap67w8l4vumjlda3mk7gnrnfc</string>
+    <string name="support_sol">Solana (SOL)</string>
+    <string name="support_sol_address">8xnMikxK2SADx4ZAo46WRZ6cMZ2gdLjhegNi1PBuf1oe</string>
+    <string name="support_trx">Tron (TRX)</string>
+    <string name="support_trx_address">TXUYnmCwXAXV7HRntyKzkkrZSDRaBVTFzK</string>
     <string name="install_title">Update</string>
     <string name="install_verifying">Verifying the download…</string>
     <string name="install_ready_title">Ready to install</string>
