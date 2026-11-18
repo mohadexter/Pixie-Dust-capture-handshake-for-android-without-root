@@ -13,7 +13,7 @@
 
 
 
-# https://t.me/PixieDustapp
+ https://t.me/PixieDustapp
 
 
 > **Read the full article:** [Pixie Dust: Auditing WPS and WPA Security from an Android Phone, Without Root](ARTICLE.md) — a technical write-up covering the architecture, the libusb-on-Android work, the interface, the safety rules and the honest limits of the project.
