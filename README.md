@@ -2,7 +2,7 @@
 
 ![Pixie Dust social preview](docs/social-preview.png)
 
-# Telegram Channel (docs/icons/telegram.png)
+# [Telegram Channel](docs/icons/telegram.png)
 ## https://t.me/PixieDustapp
 
 
