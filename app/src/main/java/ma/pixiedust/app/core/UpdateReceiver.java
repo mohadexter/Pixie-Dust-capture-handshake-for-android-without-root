@@ -27,7 +27,7 @@ public class UpdateReceiver extends BroadcastReceiver {
         }
         Prefs prefs = new Prefs(context);
         String path = prefs.pendingUpdatePath();
-        if (path == null || path.isEmpty()) {
+        if (path == null || path.isEmpty() || prefs.pendingUpdateId() != id) {
             return;
         }
 

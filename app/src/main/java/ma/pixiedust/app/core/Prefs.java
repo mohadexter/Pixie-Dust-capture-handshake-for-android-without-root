@@ -332,6 +332,7 @@ public final class Prefs {
     private static final String K_UPDATE_SEEN = "update_seen_version";
     private static final String K_UPDATE_PENDING_SHA = "update_pending_sha";
     private static final String K_UPDATE_PENDING_PATH = "update_pending_path";
+    private static final String K_UPDATE_PENDING_ID = "update_pending_id";
 
     /** Last release the user answered "Later" to; we stay quiet until a newer one. */
     public int dismissedUpdate() {
@@ -392,11 +393,16 @@ public final class Prefs {
         sp.edit().remove(K_UPDATE_PENDING_NOTES).apply();
     }
 
-    public void setPendingUpdate(String sha256, String path) {
+    public void setPendingUpdate(String sha256, String path, long downloadId) {
         sp.edit()
                 .putString(K_UPDATE_PENDING_SHA, sha256 == null ? "" : sha256)
                 .putString(K_UPDATE_PENDING_PATH, path == null ? "" : path)
+                .putLong(K_UPDATE_PENDING_ID, downloadId)
                 .apply();
+    }
+
+    public long pendingUpdateId() {
+        return sp.getLong(K_UPDATE_PENDING_ID, -1L);
     }
 
     public String pendingUpdateSha() {
@@ -411,6 +417,7 @@ public final class Prefs {
         sp.edit()
                 .remove(K_UPDATE_PENDING_SHA)
                 .remove(K_UPDATE_PENDING_PATH)
+                .remove(K_UPDATE_PENDING_ID)
                 .apply();
     }
 

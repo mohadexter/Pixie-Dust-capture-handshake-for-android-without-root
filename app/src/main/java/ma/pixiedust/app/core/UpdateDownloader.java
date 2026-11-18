@@ -39,7 +39,6 @@ public final class UpdateDownloader {
         if (manager == null) {
             return false;
         }
-        new Prefs(context).setPendingUpdate(manifest.sha256, destination.getAbsolutePath());
         try {
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(manifest.url))
                     .setTitle(context.getString(R.string.update_download_title, manifest.versionName))
@@ -49,7 +48,9 @@ public final class UpdateDownloader {
                             DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                     .setDestinationInExternalFilesDir(
                             context, Environment.DIRECTORY_DOWNLOADS, destination.getName());
-            manager.enqueue(request);
+            long id = manager.enqueue(request);
+            new Prefs(context).setPendingUpdate(manifest.sha256,
+                    destination.getAbsolutePath(), id);
             return true;
         } catch (Exception ignored) {
             new Prefs(context).clearPendingUpdate();

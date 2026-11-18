@@ -95,10 +95,13 @@
             android:exported="false"
             android:launchMode="singleTop" />
 
-        <!-- DownloadManager tells us when the optional update APK has landed. -->
+        <!-- DownloadManager tells us when the optional update APK has landed.
+             The broadcast comes from the downloads provider, so it must be
+             exported; every field is re-checked against DownloadManager and the
+             APK signature before anything is offered to the installer. -->
         <receiver
             android:name=".core.UpdateReceiver"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
             </intent-filter>
