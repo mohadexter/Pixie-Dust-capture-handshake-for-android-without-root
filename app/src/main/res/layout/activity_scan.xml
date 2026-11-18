@@ -54,7 +54,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/cd_support"
             android:padding="11dp"
-            android:src="@drawable/ic_info"
+            android:src="@drawable/ic_telegram"
             app:tint="@color/ink" />
 
         <ImageButton

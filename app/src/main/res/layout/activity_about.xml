@@ -212,6 +212,18 @@
                 app:iconSize="18dp"
                 app:iconTint="@color/indigo" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTelegramSupport"
+                style="@style/Widget.PixieDust.Button.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/about_telegram_support"
+                app:icon="@drawable/ic_telegram"
+                app:iconGravity="textStart"
+                app:iconSize="18dp"
+                app:iconTint="@color/indigo" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

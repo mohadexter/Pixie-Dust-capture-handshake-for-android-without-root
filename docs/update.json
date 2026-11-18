@@ -1,10 +1,32 @@
 {
-  "versionCode": 9,
-  "versionName": "1.0.8",
-  "url": "https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root/releases/download/v1.0.8/PixieDust-release.apk",
-  "sha256": "852264db32d59f4cbad38d8f821610677b4bc5c136b4916304df43190188fe00",
-  "size": 31821134,
+  "versionCode": 10,
+  "versionName": "1.0.9",
+  "url": "https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root/releases/download/v1.0.9/PixieDust-release.apk",
+  "sha256": "89cf43fbcb3e48e59c88d0c5bd88aae04d9700dcfc06dcd0039f64cddee77120",
+  "size": 31823006,
   "changelog": [
+    {
+      "versionCode": 10,
+      "versionName": "1.0.9",
+      "date": "2026-11-18",
+      "items": [
+        {
+          "type": "new",
+          "en": "Telegram plane icon for the support button in the scan header, clearer than the generic info icon",
+          "fr": "Icône « avion » Telegram pour le bouton d’assistance dans l’en-tête du balayage, plus claire que l’icône d’information"
+        },
+        {
+          "type": "new",
+          "en": "Telegram support button in About, next to Release notes",
+          "fr": "Bouton d’assistance Telegram dans À propos, à côté des Notes de version"
+        },
+        {
+          "type": "improvement",
+          "en": "Header icons share one ink color; the language row button now reads Change/Modifier instead of a second Language label",
+          "fr": "Les icônes d’en-tête partagent la même couleur ; le bouton de la ligne Langue affiche « Modifier » au lieu d’un second libellé « Langue »"
+        }
+      ]
+    },
     {
       "versionCode": 9,
       "versionName": "1.0.8",

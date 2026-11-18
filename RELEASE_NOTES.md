@@ -1,4 +1,31 @@
-﻿# Pixie Dust 1.0.8 — Adapter Diagnostics, Cleaner Highlights, Launch Update Check
+﻿# Pixie Dust 1.0.9 — Icons and Clarity
+
+Release number: 1.0.9 (versionCode 10).
+
+Interface-only polish; nothing about capture, PIN recovery or history changed.
+
+## What is new in this release
+
+1. **Telegram support icon**
+   - The scan header's support button now uses a paper-plane (Telegram) icon instead of a generic info glyph.
+
+2. **Support button in About**
+   - A **Join Telegram support** button sits under **Release notes**, alongside the Telegram support entry in the scan header.
+
+3. **Details**
+   - Header icons use the same ink colour (history, settings, Telegram).
+   - The language row's action button now reads **Change** / **Modifier** instead of a second « Language » label.
+
+## Verification
+
+- Package `ma.pixiedust.app`, versionCode 10, versionName 1.0.9, minSdk 24,
+  targetSdk 36, `arm64-v8a` + `armeabi-v7a`.
+- Signed with the existing release key (`apksigner` certificate SHA-256
+  `18fab906...`).
+
+---
+
+# Pixie Dust 1.0.8 — Adapter Diagnostics, Cleaner Highlights, Launch Update Check
 
 Release number: 1.0.8 (versionCode 9).
 

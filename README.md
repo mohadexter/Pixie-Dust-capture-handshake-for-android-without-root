@@ -10,7 +10,7 @@
 
 | | |
 |---|---|
-| 📦 **Latest release (APK)** | [releases/tag/v1.0.8](../../releases/tag/v1.0.8) |
+| 📦 **Latest release (APK)** | [releases/tag/v1.0.9](../../releases/tag/v1.0.9) |
 | 📖 **Technical write-up** | [ARTICLE.md](ARTICLE.md) |
 | 🛠️ **Build instructions** | [README-BUILD.md](README-BUILD.md) |
 | 🧾 **Release notes** | [RELEASE_NOTES.md](RELEASE_NOTES.md) |
@@ -48,7 +48,7 @@
 
 ## Status
 
-This tree builds release **1.0.8** (versionCode **9**). Please verify the APK with `apksigner` before installing; no physical-adapter test is claimed here — if you build it, test on your own phone and your own network.
+This tree builds release **1.0.9** (versionCode **9**). Please verify the APK with `apksigner` before installing; no physical-adapter test is claimed here — if you build it, test on your own phone and your own network.
 
 ## License
 

@@ -145,6 +145,7 @@
     <string name="settings_language_section">Langue</string>
     <string name="settings_language_system">Suivre le système</string>
     <string name="settings_language_note">L’anglais et le français sont inclus. Android 13+ permet aussi de choisir la langue par application.</string>
+    <string name="settings_language_change">Modifier</string>
     <string name="settings_driver_section">Adaptateur et pilote</string>
     <string name="settings_chipset">Surcharge du jeu de puces</string>
     <string name="settings_chipset_auto">Détection automatique</string>
@@ -241,6 +242,7 @@ En continuant, vous confirmez avoir compris ces conditions et être autorisé à
     <string name="update_failed_text">Le fichier est incomplet ou incorrect. Pixie Dust reste inchangé.</string>
     <string name="about_check_updates">Vérifier les mises à jour</string>
     <string name="about_release_notes">Notes de version</string>
+    <string name="about_telegram_support">Rejoindre l’assistance Telegram</string>
     <string name="install_title">Mise à jour</string>
     <string name="install_verifying">Vérification du téléchargement…</string>
     <string name="install_ready_title">Prête à installer</string>

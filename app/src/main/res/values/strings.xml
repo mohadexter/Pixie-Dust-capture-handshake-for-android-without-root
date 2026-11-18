@@ -145,6 +145,7 @@
     <string name="settings_language_section">Language</string>
     <string name="settings_language_system">Follow the system</string>
     <string name="settings_language_note">English and French are bundled. Android 13+ also lets you pick the language per app.</string>
+    <string name="settings_language_change">Change</string>
     <string name="settings_driver_section">Adapter &amp; driver</string>
     <string name="settings_chipset">Chipset override</string>
     <string name="settings_chipset_auto">Automatic detection</string>
@@ -241,6 +242,7 @@ By continuing you confirm that you understand this and that you have the right t
     <string name="update_failed_text">The file was incomplete or did not match. Pixie Dust is unchanged.</string>
     <string name="about_check_updates">Check for updates</string>
     <string name="about_release_notes">Release notes</string>
+    <string name="about_telegram_support">Join Telegram support</string>
     <string name="install_title">Update</string>
     <string name="install_verifying">Verifying the download…</string>
     <string name="install_ready_title">Ready to install</string>

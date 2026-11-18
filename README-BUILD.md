@@ -5,7 +5,7 @@ Pixie Dust الأصلي بلغة **Python** عبر **Chaquopy**. الواجهة 
 وخدمة واحدة في الخلفية، والتصميم فاتح فقط.
 
 - Package / applicationId: `ma.pixiedust.app`
-- Version: `1.0.8` (versionCode `9`)
+- Version: `1.0.9` (versionCode `10`)
 - minSdk `24` / targetSdk `36` / compileSdk `36`
 - ABIs: `arm64-v8a` + `armeabi-v7a` فقط (بلا x86 وبلا محاكي)
 - اللغات: English / Français
@@ -98,7 +98,7 @@ $bt="C:\Android\Sdk\build-tools\36.0.0"
 المتوقع:
 
 - `Verifies` و`Verified using v2 scheme (APK Signature Scheme v2): true`
-- package `ma.pixiedust.app`، versionCode `9`، versionName `1.0.8`
+- package `ma.pixiedust.app`، versionCode `10`، versionName `1.0.9`
 - `native-code: 'arm64-v8a' 'armeabi-v7a'`
 - locales تتضمن `en`, `fr`
 
