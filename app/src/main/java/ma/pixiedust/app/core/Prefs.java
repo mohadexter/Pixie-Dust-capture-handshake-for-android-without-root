@@ -368,6 +368,16 @@ public final class Prefs {
     }
 
     private static final String K_UPDATE_PENDING_NOTES = "update_pending_notes";
+    private static final String K_NOTIF_ASKED = "notification_permission_asked";
+
+    /** Android 13+ asks for notifications once; a refusal is respected. */
+    public boolean notificationAsked() {
+        return sp.getBoolean(K_NOTIF_ASKED, false);
+    }
+
+    public void setNotificationAsked() {
+        sp.edit().putBoolean(K_NOTIF_ASKED, true).apply();
+    }
 
     /** Version installed from the in-app updater whose notes were not shown yet. */
     public int pendingWhatsNew() {

@@ -1,7 +1,10 @@
 package ma.pixiedust.app.ui;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.hardware.usb.UsbDevice;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -59,6 +62,7 @@ public class ScanActivity extends AppCompatActivity implements Repo.Listener {
         b.btnHistory.setOnClickListener(v -> startActivity(new Intent(this, HistoryActivity.class)));
         b.btnSettings.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
 
+        askForNotificationPermission();
         handleIntent(getIntent());
     }
 
@@ -102,6 +106,22 @@ public class ScanActivity extends AppCompatActivity implements Repo.Listener {
             repo.triggerScan(true);
             intent.removeExtra("rescan");
         }
+    }
+
+    /**
+     * Notifications carry capture progress and the optional update notice. Ask
+     * once on Android 13+; a refusal is respected and nothing else changes.
+     */
+    private void askForNotificationPermission() {
+        if (Build.VERSION.SDK_INT < 33 || prefs.notificationAsked()) {
+            return;
+        }
+        if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)
+                == PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        prefs.setNotificationAsked();
+        requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 21);
     }
 
     /** Opens the adapter without asking for permission, only when one is already granted. */

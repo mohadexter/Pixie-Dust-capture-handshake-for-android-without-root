@@ -12,7 +12,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 import ma.pixiedust.app.R;
 import ma.pixiedust.app.core.UpdateChecker;
@@ -79,7 +78,8 @@ public final class WhatsNewDialog {
         list.setOrientation(LinearLayout.VERTICAL);
         scroll.addView(list);
 
-        boolean french = Locale.getDefault().getLanguage().startsWith("fr");
+        boolean french = activity.getResources().getConfiguration()
+                .getLocales().get(0).getLanguage().startsWith("fr");
         if (blocks == null || blocks.isEmpty()) {
             list.addView(body(activity, activity.getString(R.string.update_no_notes)));
         } else {
