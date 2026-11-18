@@ -5,6 +5,11 @@
     <external-path
         name="downloads"
         path="Download/" />
+    <!-- The optional update is downloaded into the app's own folder, not shared
+         storage, so no storage permission is needed. -->
+    <external-files-path
+        name="updates"
+        path="Download/" />
     <!-- Staged captures, used only when publishing failed. -->
     <cache-path
         name="staging"

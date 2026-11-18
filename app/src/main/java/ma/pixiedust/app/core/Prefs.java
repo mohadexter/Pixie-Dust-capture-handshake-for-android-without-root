@@ -324,6 +324,86 @@ public final class Prefs {
                 .apply();
     }
 
+    // --------------------------------------------------------------- updates
+
+    private static final String K_UPDATE_DISMISSED = "update_dismissed";
+    private static final String K_UPDATE_CHECKED = "update_checked_at";
+    private static final String K_UPDATE_JSON = "update_json";
+    private static final String K_UPDATE_SEEN = "update_seen_version";
+    private static final String K_UPDATE_PENDING_SHA = "update_pending_sha";
+    private static final String K_UPDATE_PENDING_PATH = "update_pending_path";
+
+    /** Last release the user answered "Later" to; we stay quiet until a newer one. */
+    public int dismissedUpdate() {
+        return sp.getInt(K_UPDATE_DISMISSED, 0);
+    }
+
+    public void dismissUpdate(int versionCode) {
+        sp.edit().putInt(K_UPDATE_DISMISSED, versionCode).apply();
+    }
+
+    public long updateCheckedAt() {
+        return sp.getLong(K_UPDATE_CHECKED, 0L);
+    }
+
+    public void setUpdateCheckedAt(long timestamp) {
+        sp.edit().putLong(K_UPDATE_CHECKED, timestamp).apply();
+    }
+
+    public String cachedUpdate() {
+        return sp.getString(K_UPDATE_JSON, "");
+    }
+
+    public void setCachedUpdate(String json) {
+        sp.edit().putString(K_UPDATE_JSON, json == null ? "" : json).apply();
+    }
+
+    /** Version whose "What's new" was already shown, so it appears once. */
+    public int seenVersion() {
+        return sp.getInt(K_UPDATE_SEEN, 0);
+    }
+
+    public void setSeenVersion(int versionCode) {
+        sp.edit().putInt(K_UPDATE_SEEN, versionCode).apply();
+    }
+
+    private static final String K_UPDATE_PENDING_NOTES = "update_pending_notes";
+
+    /** Version installed from the in-app updater whose notes were not shown yet. */
+    public int pendingWhatsNew() {
+        return sp.getInt(K_UPDATE_PENDING_NOTES, 0);
+    }
+
+    public void setPendingWhatsNew(int versionCode) {
+        sp.edit().putInt(K_UPDATE_PENDING_NOTES, versionCode).apply();
+    }
+
+    public void clearPendingWhatsNew() {
+        sp.edit().remove(K_UPDATE_PENDING_NOTES).apply();
+    }
+
+    public void setPendingUpdate(String sha256, String path) {
+        sp.edit()
+                .putString(K_UPDATE_PENDING_SHA, sha256 == null ? "" : sha256)
+                .putString(K_UPDATE_PENDING_PATH, path == null ? "" : path)
+                .apply();
+    }
+
+    public String pendingUpdateSha() {
+        return sp.getString(K_UPDATE_PENDING_SHA, "");
+    }
+
+    public String pendingUpdatePath() {
+        return sp.getString(K_UPDATE_PENDING_PATH, "");
+    }
+
+    public void clearPendingUpdate() {
+        sp.edit()
+                .remove(K_UPDATE_PENDING_SHA)
+                .remove(K_UPDATE_PENDING_PATH)
+                .apply();
+    }
+
     private static int clamp(int value, int min, int max) {
         return Math.max(min, Math.min(max, value));
     }

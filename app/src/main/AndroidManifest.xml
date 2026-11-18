@@ -15,7 +15,14 @@
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
-    <!-- No android.permission.INTERNET on purpose: the app is fully offline. -->
+    <!-- Network access exists only for the optional update check: one HTTPS GET
+         of the release manifest and, if the user asks, the APK download. No
+         telemetry, no account, no background traffic. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Installing the verified update still needs the user's explicit tap in the
+         system installer; Pixie Dust never installs anything silently. -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:name=".PixieApp"
@@ -83,6 +90,19 @@
         <activity
             android:name=".ui.HistoryActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.InstallActivity"
+            android:exported="false"
+            android:launchMode="singleTop" />
+
+        <!-- DownloadManager tells us when the optional update APK has landed. -->
+        <receiver
+            android:name=".core.UpdateReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+            </intent-filter>
+        </receiver>
 
         <service
             android:name=".service.AttackService"

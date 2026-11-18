@@ -200,6 +200,30 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReleaseNotes"
+                style="@style/Widget.PixieDust.Button.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="@string/about_release_notes"
+                app:icon="@drawable/ic_history"
+                app:iconGravity="textStart"
+                app:iconSize="18dp"
+                app:iconTint="@color/indigo" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCheckUpdates"
+                style="@style/Widget.PixieDust.Button.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/about_check_updates"
+                app:icon="@drawable/ic_refresh"
+                app:iconGravity="textStart"
+                app:iconSize="18dp"
+                app:iconTint="@color/indigo" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

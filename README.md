@@ -10,14 +10,14 @@
 
 - Use it **only on networks you own** or for which you have **explicit written permission** to test.
 - The app asks for confirmation before every operation and shows a consent dialog before the first frame is transmitted.
-- It has no `INTERNET` permission and cannot transmit anything: recovered PINs/passwords stay on the device.
+- It has no account and no telemetry. The only network use is the optional update check (one manifest request and, if you accept, the APK). Recovered PINs/passwords never leave the device.
 - Misuse of this tool against networks you do not own is illegal in most jurisdictions.
 
 ## Short description
 
 **Pixie Dust** is a security app for Android that audits the security of **WPS** (Wi-Fi Protected Setup) on wireless networks over a **USB OTG** port.
 
-The app is written in **Java + XML** with an internal **Python** engine, and runs on the embedded **libusb** engine. Its goal: audit a **PIN**, then extract the **PSK**, without root, without `wpa_supplicant`, without internet, and with a single attempt only.
+The app is written in **Java + XML** with an internal **Python** engine, and runs on the embedded **libusb** engine. Its goal: audit a **PIN**, then extract the **PSK**, without root, without `wpa_supplicant`, and with a single attempt only.
 
 ## Features
 
@@ -39,7 +39,7 @@ The app is written in **Java + XML** with an internal **Python** engine, and run
 
 ## Build and verification status
 
-This source tree builds release `1.0.6` (versionCode `7`). Verify the produced APK with `apksigner` before installing it, and check the package/version with `aapt2 dump badging`.
+This source tree builds release `1.0.7` (versionCode `8`). Verify the produced APK with `apksigner` before installing it, and check the package/version with `aapt2 dump badging`.
 
 Physical testing with an Android phone and a supported USB OTG Wi-Fi adapter is still required. No real-device test is claimed here.
 
@@ -47,7 +47,7 @@ Physical testing with an Android phone and a supported USB OTG Wi-Fi adapter is 
 
 - WPS validation makes one attempt only; no automatic retries, online PIN guessing, OneShot, PBC/WEP, root, or `wpa_supplicant`.
 - Optional deauthentication during a capture is bounded and targeted; it is not a flood. Use only on networks you own or are authorized to test.
-- Recovered PINs/passwords are stored in the app-private on-device history. Clear history in the app to remove those records. The app has no `INTERNET` permission and does not transmit this history.
+- Recovered PINs/passwords are stored in the app-private on-device history. Clear history in the app to remove those records. The only network use is the optional update check; this history is never transmitted.
 - No real-device functionality is claimed until tested with compatible hardware.
 
 ---
@@ -60,7 +60,7 @@ Physical testing with an Android phone and a supported USB OTG Wi-Fi adapter is 
 
 # Pixie Dust: Auditing WPS and WPA Security from an Android Phone, Without Root
 
-*A technical walkthrough of a native Android app that runs a complete USB Wi-Fi security audit on a phone, with no root, no `wpa_supplicant`, and no internet permission.*
+*A technical walkthrough of a native Android app that runs a complete USB Wi-Fi security audit on a phone, with no root, no `wpa_supplicant`, and no account.*
 
 ---
 
@@ -70,7 +70,7 @@ Most Wi-Fi security tooling lives on a laptop. You install a Linux distribution,
 
 Phones are the opposite: always with you, always charged, and — thanks to USB On-The-Go — perfectly capable of hosting a USB Wi-Fi adapter. What has been missing is the software layer that makes that hardware usable on unrooted Android.
 
-**Pixie Dust** is an attempt to fill that gap. It is a single Android application, written in Java with an embedded Python engine, that brings a WPS audit and a WPA handshake capture to an ordinary phone. It does not require root, it does not touch `wpa_supplicant`, and it cannot send anything over the network, because it does not even request the `INTERNET` permission.
+**Pixie Dust** is an attempt to fill that gap. It is a single Android application, written in Java with an embedded Python engine, that brings a WPS audit and a WPA handshake capture to an ordinary phone. It does not require root, it does not touch `wpa_supplicant`, and captured data never leaves the phone: the only network request is the optional update manifest.
 
 The project is open source under GPL-2.0:
 
@@ -87,7 +87,7 @@ The project is open source under GPL-2.0:
 | ABIs | `arm64-v8a`, `armeabi-v7a` (ARM only, no x86, no emulator) |
 | Languages | English, French |
 | Theme | Light only |
-| Internet permission | None (the app cannot transmit anything) |
+| Internet permission | Only for the optional update check (manifest + APK); never for captured data |
 
 The app runs on any Android phone from Android 7.0 up to Android 16, as long as the phone supports USB OTG and can power the adapter (high-power adapters may need a powered hub).
 
@@ -95,7 +95,7 @@ The app runs on any Android phone from Android 7.0 up to Android 16, as long as 
 
 ## Screenshots (real device)
 
-The following screenshots were taken on a real Android phone running Pixie Dust 1.0.6.
+The following screenshots were taken on a real Android phone running Pixie Dust 1.0.7.
 
 ![Scan screen](docs/screenshots/screen1.jpg)
 

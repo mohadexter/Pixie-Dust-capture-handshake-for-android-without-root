@@ -1,4 +1,53 @@
-﻿# Pixie Dust 1.0.6 — Known Models, Split History, Storage First
+﻿# Pixie Dust 1.0.7 — Optional In-App Updates
+
+Release number: 1.0.7 (versionCode 8).
+
+Version 1.0.7 adds an update channel that is entirely optional. Pixie Dust checks
+GitHub at most once a day, says when a newer release exists, and never downloads
+or installs anything without a tap. Nothing about scanning, capturing or history
+changes in this release.
+
+## What is new in this release
+
+1. **Automatic, non-blocking check**
+   - One HTTPS request for `docs/update.json`, at most once every 24 hours.
+   - A failed request is silent and keeps the previous cached answer.
+   - A low-priority notification is posted when a newer version exists.
+
+2. **Download and verification**
+   - The APK is fetched with `DownloadManager` into the app's own folder, so no
+     storage permission is added.
+   - The file must match the published **SHA-256** and be signed with the same
+     certificate as the installed app; otherwise it is deleted and the install
+     is refused.
+
+3. **What's new in three places**
+   - In the update dialog before downloading.
+   - On the first launch after an update, **offline**, from the changelog bundled
+     in the APK (`res/raw/update_changelog.json`, generated from `docs/update.json`).
+   - From **About → Release notes**, with the full history.
+
+4. **Explicit install**
+   - A "ready to install" notification opens a small screen that verifies the file
+     again, then opens the Android system installer.
+   - "Later" is always available; a dismissed release is not raised again until a
+     newer one appears.
+
+5. **Corrected wording**
+   - The About screen and the README no longer claim that the app has no network
+     access. The `INTERNET` permission exists only for this optional update check;
+     captured data is never transmitted.
+
+## Verification
+
+- Package `ma.pixiedust.app`, versionCode 8, versionName 1.0.7, minSdk 24,
+  targetSdk 36, `arm64-v8a` + `armeabi-v7a`.
+- Signed with the existing release key (`apksigner` certificate SHA-256
+  `18fab906...`).
+
+---
+
+# Pixie Dust 1.0.6 — Known Models, Split History, Storage First
 
 Release number: 1.0.6 (versionCode 7).
 

@@ -18,6 +18,7 @@ import ma.pixiedust.app.core.Data;
 import ma.pixiedust.app.core.PixieError;
 import ma.pixiedust.app.core.Prefs;
 import ma.pixiedust.app.core.Repo;
+import ma.pixiedust.app.core.UpdateFlow;
 import ma.pixiedust.app.databinding.ActivityScanBinding;
 import ma.pixiedust.app.usb.UsbOtg;
 
@@ -30,6 +31,7 @@ public class ScanActivity extends AppCompatActivity implements Repo.Listener {
     private UsbOtg usb;
     private ApAdapter adapter;
     private boolean disclaimerLaunched;
+    private boolean updatesChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,10 @@ public class ScanActivity extends AppCompatActivity implements Repo.Listener {
         } else {
             disclaimerLaunched = false;
             autoScanIfReady();
+            if (!updatesChecked) {
+                updatesChecked = true;
+                UpdateFlow.onLaunch(this);
+            }
         }
         render();
     }
@@ -144,9 +150,6 @@ public class ScanActivity extends AppCompatActivity implements Repo.Listener {
         } else {
             b.countdownText.setText("");
         }
-
-        // The scan may have found networks that were then filtered out because they
-
 
         // The scan may have found networks that were then filtered out because they
         // cannot run PixieDust. Say that plainly instead of showing the "plug an

@@ -33,8 +33,8 @@ android {
         applicationId = "ma.pixiedust.app"
         minSdk = 24
         targetSdk = 36
-        versionCode = 7
-        versionName = "1.0.6"
+        versionCode = 8
+        versionName = "1.0.7"
 
         // ARM phones only: 64-bit and 32-bit. No emulator ABIs, which keeps the APK smaller.
         ndk {
@@ -100,6 +100,33 @@ android {
         }
     }
 }
+
+// The changelog in docs/update.json is mirrored into the APK as a notes-only
+// resource, so "What's new" works on the first launch after an update even
+// offline. Download URL/SHA are deliberately left out of the bundled copy.
+val syncUpdateChangelog by tasks.registering {
+    val source = rootProject.file("docs/update.json")
+    val target = project.file("src/main/res/raw/update_changelog.json")
+    inputs.file(source)
+    outputs.file(target)
+    doLast {
+        @Suppress("UNCHECKED_CAST")
+        val root = groovy.json.JsonSlurper()
+            .parse(source) as Map<String, Any?>
+        val notes = linkedMapOf<String, Any?>(
+            "versionCode" to root["versionCode"],
+            "versionName" to root["versionName"],
+            "changelog" to root["changelog"]
+        )
+        target.parentFile.mkdirs()
+        target.writeText(groovy.json.JsonOutput.toJson(notes), Charsets.UTF_8)
+    }
+}
+
+tasks.named("preBuild").configure { dependsOn(syncUpdateChangelog) }
+tasks.matching {
+    it.name.startsWith("merge") && it.name.contains("Resources")
+}.configureEach { dependsOn(syncUpdateChangelog) }
 
 dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")

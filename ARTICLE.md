@@ -2,7 +2,7 @@
 
 ![Pixie Dust social preview](docs/social-preview.png)
 
-*A technical walkthrough of a native Android app that runs a complete USB Wi-Fi security audit on a phone, with no root, no `wpa_supplicant`, and no internet permission.*
+*A technical walkthrough of a native Android app that runs a complete USB Wi-Fi security audit on a phone, with no root, no `wpa_supplicant`, and no account.*
 
 ---
 
@@ -12,7 +12,7 @@ Most Wi-Fi security tooling lives on a laptop. You install a Linux distribution,
 
 Phones are the opposite: always with you, always charged, and — thanks to USB On-The-Go — perfectly capable of hosting a USB Wi-Fi adapter. What has been missing is the software layer that makes that hardware usable on unrooted Android.
 
-**Pixie Dust** is an attempt to fill that gap. It is a single Android application, written in Java with an embedded Python engine, that brings a WPS audit and a WPA handshake capture to an ordinary phone. It does not require root, it does not touch `wpa_supplicant`, and it cannot send anything over the network, because it does not even request the `INTERNET` permission.
+**Pixie Dust** is an attempt to fill that gap. It is a single Android application, written in Java with an embedded Python engine, that brings a WPS audit and a WPA handshake capture to an ordinary phone. It does not require root, it does not touch `wpa_supplicant`, and captured data never leaves the phone: the only network request is the optional update manifest.
 
 The project is open source under GPL-2.0:
 
@@ -29,7 +29,7 @@ The project is open source under GPL-2.0:
 | ABIs | `arm64-v8a`, `armeabi-v7a` (ARM only, no x86, no emulator) |
 | Languages | English, French |
 | Theme | Light only |
-| Internet permission | None (the app cannot transmit anything) |
+| Internet permission | Only for the optional update check (manifest + APK); never for captured data |
 
 The app runs on any Android phone from Android 7.0 up to Android 16, as long as the phone supports USB OTG and can power the adapter (high-power adapters may need a powered hub).
 
@@ -37,7 +37,7 @@ The app runs on any Android phone from Android 7.0 up to Android 16, as long as 
 
 ## Screenshots (real device)
 
-The following screenshots were taken on a real Android phone running Pixie Dust 1.0.6.
+The following screenshots were taken on a real Android phone running Pixie Dust 1.0.7.
 
 ![Scan screen](docs/screenshots/screen1.jpg)
 

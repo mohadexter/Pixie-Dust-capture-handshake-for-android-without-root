@@ -199,13 +199,55 @@ By continuing you confirm that you understand this and that you have the right t
     <string name="about_title">About</string>
     <string name="about_version">Version %1$s</string>
     <string name="about_body">A small, single-purpose bench for recovering a WPS PIN with Pixie Dust and validating it once against the access point.</string>
-    <string name="about_line_no_internet">No INTERNET permission</string>
+    <string name="about_line_no_internet">No account, no tracking - the network is only used for the optional update check</string>
     <string name="about_line_no_root">No root, no wpa_supplicant</string>
     <string name="about_line_one_attempt">Exactly one PIN attempt per run</string>
     <string name="about_line_logs">PIN and PSK stay in the app\'s private history, never in the logs</string>
     <string name="about_engine">Engine: PixieDust (Python 3.11, bundled with Chaquopy)</string>
     <string name="about_licence">GPL-3.0 — the full licence ships with the source archive.</string>
     <string name="about_close">Close</string>
+
+    <!-- Optional in-app update -->
+    <string name="update_channel_name">Updates</string>
+    <string name="update_title">Update available</string>
+    <string name="update_body">Pixie Dust %1$s is available. You are on %2$s. Nothing changes until you install it.</string>
+    <string name="update_download">Download</string>
+    <string name="update_download_queued">Downloading the update. You can keep using Pixie Dust.</string>
+    <string name="update_download_failed">The download could not be started.</string>
+    <string name="update_download_title">Downloading Pixie Dust %1$s</string>
+    <string name="update_download_body">The installer opens only when you tap it.</string>
+    <string name="update_later">Later</string>
+    <string name="update_whats_new">What\'s new</string>
+    <string name="update_checking">Checking for updates…</string>
+    <string name="update_check_current">You are on the latest version.</string>
+    <string name="update_check_failed">Could not check for updates. Check your connection and try again.</string>
+    <string name="update_no_notes">No release notes for this version.</string>
+    <string name="update_notes_title">What\'s new in %1$s</string>
+    <string name="update_notes_all">Release notes</string>
+    <string name="update_type_new">New</string>
+    <string name="update_type_fix">Fix</string>
+    <string name="update_type_improvement">Improved</string>
+    <string name="update_note_title">Pixie Dust %1$s is available</string>
+    <string name="update_note_text">Tap to see what\'s new and download it.</string>
+    <string name="update_ready_title">Update ready to install</string>
+    <string name="update_ready_text">Pixie Dust was downloaded and verified. Tap to install.</string>
+    <string name="update_failed_title">Update download failed</string>
+    <string name="update_failed_text">The file was incomplete or did not match. Pixie Dust is unchanged.</string>
+    <string name="about_check_updates">Check for updates</string>
+    <string name="about_release_notes">Release notes</string>
+    <string name="install_title">Update</string>
+    <string name="install_verifying">Verifying the download…</string>
+    <string name="install_ready_title">Ready to install</string>
+    <string name="install_ready_body">Pixie Dust %1$s is downloaded and its signature matches the installed app.</string>
+    <string name="install_install">Install</string>
+    <string name="install_later">Later</string>
+    <string name="install_allow">Allow installation</string>
+    <string name="install_unknown_sources">Android needs your permission to install updates from Pixie Dust.</string>
+    <string name="install_missing">The downloaded file is no longer available. Download it again.</string>
+    <string name="install_hash">The file does not match the published checksum. Nothing was installed.</string>
+    <string name="install_signature">The file is not signed with the same key as Pixie Dust. Nothing was installed.</string>
+    <string name="install_error">The file could not be verified. Nothing was installed.</string>
+    <string name="install_failed_to_open">Could not open the installer.</string>
 
     <!-- ================= Service ================= -->
     <string name="service_channel">Attempt</string>

@@ -199,13 +199,55 @@ En continuant, vous confirmez avoir compris ces conditions et être autorisé à
     <string name="about_title">À propos de Pixie Dust</string>
     <string name="about_version">Version %1$s</string>
     <string name="about_body">Petite appli à usage unique : récupérer le WPS PIN avec Pixie Dust, puis le vérifier une fois sur le point d’accès.</string>
-    <string name="about_line_no_internet">Sans INTERNET</string>
+    <string name="about_line_no_internet">Aucun compte, aucun suivi - le réseau sert uniquement à la vérification facultative des mises à jour</string>
     <string name="about_line_no_root">Sans root ni wpa_supplicant</string>
     <string name="about_line_one_attempt">Un seul PIN par exécution</string>
     <string name="about_line_logs">Le PIN et le mot de passe restent dans l’historique privé de l’appli, jamais dans les journaux</string>
     <string name="about_engine">Moteur : PixieDust (Python 3.11 intégré via Chaquopy)</string>
     <string name="about_licence">GPL-3.0 — la licence complète est fournie avec l’archive source.</string>
     <string name="about_close">Fermer</string>
+
+    <!-- Mise à jour facultative intégrée -->
+    <string name="update_channel_name">Mises à jour</string>
+    <string name="update_title">Mise à jour disponible</string>
+    <string name="update_body">Pixie Dust %1$s est disponible. Vous utilisez %2$s. Rien ne change tant que vous ne l\'installez pas.</string>
+    <string name="update_download">Télécharger</string>
+    <string name="update_download_queued">Téléchargement de la mise à jour. Vous pouvez continuer à utiliser Pixie Dust.</string>
+    <string name="update_download_failed">Le téléchargement n\'a pas pu démarrer.</string>
+    <string name="update_download_title">Téléchargement de Pixie Dust %1$s</string>
+    <string name="update_download_body">L\'installateur ne s\'ouvre que si vous le touchez.</string>
+    <string name="update_later">Plus tard</string>
+    <string name="update_whats_new">Nouveautés</string>
+    <string name="update_checking">Vérification des mises à jour…</string>
+    <string name="update_check_current">Vous avez la dernière version.</string>
+    <string name="update_check_failed">Vérification impossible. Vérifiez votre connexion et réessayez.</string>
+    <string name="update_no_notes">Aucune note de version.</string>
+    <string name="update_notes_title">Nouveautés de %1$s</string>
+    <string name="update_notes_all">Notes de version</string>
+    <string name="update_type_new">Nouveau</string>
+    <string name="update_type_fix">Correctif</string>
+    <string name="update_type_improvement">Amélioration</string>
+    <string name="update_note_title">Pixie Dust %1$s est disponible</string>
+    <string name="update_note_text">Touchez pour voir les nouveautés et télécharger.</string>
+    <string name="update_ready_title">Mise à jour prête à installer</string>
+    <string name="update_ready_text">Pixie Dust a été téléchargé et vérifié. Touchez pour installer.</string>
+    <string name="update_failed_title">Échec du téléchargement</string>
+    <string name="update_failed_text">Le fichier est incomplet ou incorrect. Pixie Dust reste inchangé.</string>
+    <string name="about_check_updates">Vérifier les mises à jour</string>
+    <string name="about_release_notes">Notes de version</string>
+    <string name="install_title">Mise à jour</string>
+    <string name="install_verifying">Vérification du téléchargement…</string>
+    <string name="install_ready_title">Prête à installer</string>
+    <string name="install_ready_body">Pixie Dust %1$s est téléchargé et sa signature correspond à l\'application installée.</string>
+    <string name="install_install">Installer</string>
+    <string name="install_later">Plus tard</string>
+    <string name="install_allow">Autoriser l\'installation</string>
+    <string name="install_unknown_sources">Android a besoin de votre autorisation pour installer les mises à jour de Pixie Dust.</string>
+    <string name="install_missing">Le fichier téléchargé n\'existe plus. Téléchargez-le à nouveau.</string>
+    <string name="install_hash">Le fichier ne correspond pas à l\'empreinte publiée. Rien n\'a été installé.</string>
+    <string name="install_signature">Le fichier n\'est pas signé avec la même clé que Pixie Dust. Rien n\'a été installé.</string>
+    <string name="install_error">Le fichier n\'a pas pu être vérifié. Rien n\'a été installé.</string>
+    <string name="install_failed_to_open">Impossible d\'ouvrir l\'installateur.</string>
 
     <!-- ================= Service ================= -->
     <string name="service_channel">L’opération</string>

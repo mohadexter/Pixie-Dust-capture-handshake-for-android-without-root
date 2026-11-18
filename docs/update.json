@@ -1,0 +1,95 @@
+{
+  "versionCode": 8,
+  "versionName": "1.0.7",
+  "url": "https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root/releases/download/v1.0.7/PixieDust-release.apk",
+  "sha256": "d4d0a2fa2d0f664b6efe0fe207445565155487cce8e9376c0c2203b2d364a5ec",
+  "size": 31809494,
+  "changelog": [
+    {
+      "versionCode": 8,
+      "versionName": "1.0.7",
+      "date": "2026-11-18",
+      "items": [
+        {
+          "type": "new",
+          "en": "Optional in-app updates: Pixie Dust checks once a day and says when a new version exists",
+          "fr": "Mises à jour facultatives : Pixie Dust vérifie une fois par jour et signale les nouvelles versions"
+        },
+        {
+          "type": "new",
+          "en": "Download with SHA-256 and signature verification, then the system installer",
+          "fr": "Téléchargement vérifié par SHA-256 et par signature, puis l’installateur du système"
+        },
+        {
+          "type": "new",
+          "en": "What's new before the update, on the first launch after it, and from About",
+          "fr": "Les nouveautés avant la mise à jour, au premier lancement ensuite, et depuis À propos"
+        },
+        {
+          "type": "new",
+          "en": "Nothing is forced: Later hides the notice until the next release",
+          "fr": "Rien n’est imposé : Plus tard masque l’avis jusqu’à la prochaine version"
+        },
+        {
+          "type": "fix",
+          "en": "The About screen no longer claims there is no INTERNET permission: the network is used only for the update check",
+          "fr": "L’écran À propos ne prétend plus qu’il n’y a pas d’autorisation INTERNET : le réseau sert uniquement à la vérification des mises à jour"
+        }
+      ]
+    },
+    {
+      "versionCode": 7,
+      "versionName": "1.0.6",
+      "date": "2026-11-18",
+      "items": [
+        {
+          "type": "new",
+          "en": "Known routers highlighted: the SSID turns green and a Pixie pill sits next to WPS",
+          "fr": "Routeurs connus mis en évidence : le SSID passe en vert et une pastille Pixie accompagne WPS"
+        },
+        {
+          "type": "new",
+          "en": "History split into Handshake and PixieDust tabs with live counts",
+          "fr": "Historique séparé en deux onglets Handshake et PixieDust avec compteurs"
+        },
+        {
+          "type": "new",
+          "en": "The history button now uses a clock icon instead of a folder",
+          "fr": "Le bouton de l’historique utilise une icône d’horloge au lieu d’un dossier"
+        },
+        {
+          "type": "new",
+          "en": "Handshake storage is the first card in Settings",
+          "fr": "Le stockage des handshakes est la première carte des réglages"
+        }
+      ]
+    },
+    {
+      "versionCode": 6,
+      "versionName": "1.0.5",
+      "date": "2026-11-05",
+      "items": [
+        {
+          "type": "new",
+          "en": "Redesigned network action cards, equal height, 26dp corners",
+          "fr": "Cartes d’action réseau redessinées, hauteur égale, coins de 26 dp"
+        },
+        {
+          "type": "new",
+          "en": "One start/stop button for the handshake capture",
+          "fr": "Un seul bouton démarrer/arrêter pour la capture du handshake"
+        },
+        {
+          "type": "fix",
+          "en": "Warning icon when a capture stops before completing",
+          "fr": "Icône d’avertissement quand une capture s’arrête avant la fin"
+        },
+        {
+          "type": "new",
+          "en": "Success dialog with the file path and an Open file action",
+          "fr": "Dialogue de succès avec le chemin du fichier et une action Ouvrir le fichier"
+        }
+      ]
+    }
+  ]
+}
