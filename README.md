@@ -322,18 +322,6 @@ The update manifest is only ever read from the project's own GitHub page, and th
 
 ---
 
-## Version history (summary)
-
-| Version | Highlights |
-|---|---|
-| **1.0.9** | Telegram support icon and About support button, unified header icons, clearer language row. |
-| **1.0.8** | RTL8187 rfkill detection (sampling + both masks), English/French only (Arabic/Darija strings removed), known-model highlight requires a real model token, 699 more public WPS models added offline, update check on every app entry, Check for updates moved to Settings, Telegram support link. |
-| **1.0.7** | Optional in-app update channel: manifest, notification, changelog, verified download, system installer. |
-| **1.0.6** | Known-router highlight (green SSID + Pixie pill), history split into Handshake/PixieDust tabs, clock icon, handshake storage first in Settings. |
-| **1.0.5** | Redesigned network action cards, single start/stop capture button, warning icon on incomplete capture, success dialog with the file path. |
-
----
-
 ## Honest limits
 
 - **A model in the list is a hint, not a promise.** Chipset and firmware revisions differ; the same model number can behave differently. The app never claims a network is vulnerable before the attempt.
