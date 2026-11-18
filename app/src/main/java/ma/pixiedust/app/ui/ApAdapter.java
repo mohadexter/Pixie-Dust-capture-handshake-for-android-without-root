@@ -15,6 +15,7 @@ import java.util.Set;
 
 import ma.pixiedust.app.R;
 import ma.pixiedust.app.core.Data;
+import ma.pixiedust.app.core.KnownModels;
 import ma.pixiedust.app.databinding.ItemApBinding;
 
 /** Flat list of access points. The list object only changes after a scan. */
@@ -86,6 +87,12 @@ public class ApAdapter extends RecyclerView.Adapter<ApAdapter.VH> {
             b.vendorText.setVisibility(View.VISIBLE);
             b.vendorText.setText(device);
         }
+
+        // A model from the offline known list: the network name goes green and a
+        // small "Pixie" pill sits next to WPS, so the target stands out in a scan.
+        boolean pixieModel = KnownModels.matches(context, model);
+        b.ssidText.setTextColor(context.getColor(pixieModel ? R.color.green : R.color.ink));
+        b.pixiePill.setVisibility(pixieModel && ap.wps ? View.VISIBLE : View.GONE);
 
         b.wpsPill.setVisibility(ap.wps ? android.view.View.VISIBLE : android.view.View.GONE);
         b.lockPill.setVisibility(ap.locked ? android.view.View.VISIBLE : android.view.View.GONE);

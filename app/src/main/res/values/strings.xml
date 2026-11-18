@@ -20,6 +20,7 @@
     <string name="scan_ch">ch %1$d</string>
     <string name="scan_dbm">%1$d dBm</string>
     <string name="scan_wps">WPS</string>
+    <string name="scan_pixie">Pixie</string>
     <string name="scan_wps_lock">locked</string>
     <string name="btn_drivers">Adapter</string>
     <string name="btn_settings">Settings</string>
@@ -333,4 +334,9 @@ By continuing you confirm that you understand this and that you have the right t
     <string name="history_pin">PIN: %1$s</string>
     <string name="history_psk">Password: %1$s</string>
     <string name="history_copied">Copied</string>
+    <string name="history_tab_handshake">Handshake (%1$d)</string>
+    <string name="history_tab_pixie">PixieDust (%1$d)</string>
+    <string name="history_empty_pixie_title">No PixieDust result yet</string>
+    <string name="history_empty_pixie_body">Networks where PixieDust recovered a PIN or the password appear here.</string>
+    <string name="history_clear_pixie_confirm">Delete PixieDust history?</string>
 </resources>

@@ -20,6 +20,7 @@
     <string name="scan_ch">Canal %1$d</string>
     <string name="scan_dbm">%1$d dBm</string>
     <string name="scan_wps">WPS</string>
+    <string name="scan_pixie">Pixie</string>
     <string name="scan_wps_lock">verrouillé</string>
     <string name="btn_drivers">Adaptateur</string>
     <string name="btn_settings">Réglages</string>
@@ -334,4 +335,9 @@ En continuant, vous confirmez avoir compris ces conditions et être autorisé à
     <string name="history_pin">PIN : %1$s</string>
     <string name="history_psk">Mot de passe : %1$s</string>
     <string name="history_copied">Copié</string>
+    <string name="history_tab_handshake">Handshake (%1$d)</string>
+    <string name="history_tab_pixie">PixieDust (%1$d)</string>
+    <string name="history_empty_pixie_title">Aucun résultat PixieDust</string>
+    <string name="history_empty_pixie_body">Les réseaux où PixieDust a récupéré un PIN ou le mot de passe apparaissent ici.</string>
+    <string name="history_clear_pixie_confirm">Supprimer les résultats PixieDust ?</string>
 </resources>

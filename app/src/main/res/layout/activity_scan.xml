@@ -54,7 +54,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/cd_history"
             android:padding="11dp"
-            android:src="@drawable/ic_folder"
+            android:src="@drawable/ic_history"
             app:tint="@color/ink" />
 
         <ImageButton

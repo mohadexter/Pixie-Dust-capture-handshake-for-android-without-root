@@ -1,4 +1,54 @@
-﻿# Pixie Dust 1.0.5 — Handshake Folder, Signal Sorting, Live Clients
+﻿# Pixie Dust 1.0.6 — Known Models, Split History, Storage First
+
+Release number: 1.0.6 (versionCode 7).
+
+Version 1.0.6 is a focused interface release: the scan list now points at the
+routers this tool is meant for, the history screen separates handshakes from
+PixieDust results, and the handshake folder is the first thing Settings shows.
+
+## What is new in this release
+
+1. **Known-router highlight in the scan list**
+   - `res/raw/known_models.txt` ships the router models, chipset strings and
+     firmware placeholders that PixieDust users meet in the field (TL-WR841N,
+     TL-MR3020, Archer C50, DIR-605L, NBG-418N, RT2860, RTL8xxx, ...).
+   - Matching is tolerant: compact comparison (letters and digits only, lower
+     case), a trailing hardware version is dropped, and a substring match is
+     accepted in both directions, so `TP-LINK Wireless Router TL-WR841N` still
+     matches `TL-WR841N`.
+   - When a network reports a known model its **SSID is drawn in green**, and a
+     green **Pixie** pill sits next to the **WPS** pill.
+   - Nothing is downloaded: the list is a resource inside the APK.
+
+2. **History split in two**
+   - Two tabs with live counts: **Handshake (n)** and **PixieDust (n)**.
+   - Clear removes only the visible tab, with a tab-specific confirmation.
+   - The empty state follows the selected tab.
+
+3. **History icon**
+   - The header button and the empty state now use a clock-with-arrow icon
+     instead of a folder.
+
+4. **Handshake storage first**
+   - The **Handshake storage** card is the first block in Settings, above
+     scanning, attack defaults, language and adapter.
+
+## Unchanged on purpose
+
+- No new permission, no network access, no telemetry.
+- Light paper theme, English and French only.
+- Capture, PixieDust and history logic untouched.
+
+## Verification
+
+- Built with `assembleRelease` and the existing release key (`apksigner`
+  certificate SHA-256 `18fab906...`).
+- Package `ma.pixiedust.app`, versionCode 7, versionName 1.0.6, minSdk 24,
+  targetSdk 36, `arm64-v8a` + `armeabi-v7a`.
+
+---
+
+# Pixie Dust 1.0.5 — Handshake Folder, Signal Sorting, Live Clients
 
 Release number: 1.0.5 (versionCode 6).
 

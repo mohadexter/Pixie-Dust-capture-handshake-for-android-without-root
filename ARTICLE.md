@@ -37,7 +37,7 @@ The app runs on any Android phone from Android 7.0 up to Android 16, as long as 
 
 ## Screenshots (real device)
 
-The following screenshots were taken on a real Android phone running Pixie Dust 1.0.5.
+The following screenshots were taken on a real Android phone running Pixie Dust 1.0.6.
 
 ![Scan screen](docs/screenshots/screen1.jpg)
 

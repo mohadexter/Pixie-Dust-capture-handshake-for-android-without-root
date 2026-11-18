@@ -33,8 +33,8 @@ android {
         applicationId = "ma.pixiedust.app"
         minSdk = 24
         targetSdk = 36
-        versionCode = 6
-        versionName = "1.0.5"
+        versionCode = 7
+        versionName = "1.0.6"
 
         // ARM phones only: 64-bit and 32-bit. No emulator ABIs, which keeps the APK smaller.
         ndk {

@@ -1,6 +1,7 @@
 package ma.pixiedust.app.ui;
 
 import android.os.Bundle;
+import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class HistoryActivity extends AppCompatActivity {
 
     private ActivityHistoryBinding b;
     private HistoryStore history;
+    private boolean pixieTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class HistoryActivity extends AppCompatActivity {
 
         b.btnBack.setOnClickListener(v -> finish());
         b.btnClear.setOnClickListener(v -> confirmClear());
+        b.tabHandshake.setOnClickListener(v -> selectTab(false));
+        b.tabPixie.setOnClickListener(v -> selectTab(true));
         render();
     }
 
@@ -46,34 +51,78 @@ public class HistoryActivity extends AppCompatActivity {
         render();
     }
 
+    private void selectTab(boolean pixie) {
+        if (pixieTab == pixie) {
+            return;
+        }
+        pixieTab = pixie;
+        render();
+    }
+
     private void confirmClear() {
-        if (history.all().isEmpty()) {
+        if (visible(history.all()).isEmpty()) {
             return;
         }
         new MaterialAlertDialogBuilder(this)
-                .setTitle(R.string.history_clear_confirm)
+                .setTitle(pixieTab
+                        ? R.string.history_clear_pixie_confirm : R.string.history_clear_confirm)
                 .setMessage(R.string.history_clear_body)
                 .setNegativeButton(R.string.generic_cancel, null)
                 .setPositiveButton(R.string.history_clear, (dialog, which) -> {
-                    history.clear();
+                    history.clear(pixieTab
+                            ? HistoryStore.TYPE_CREDENTIALS : HistoryStore.TYPE_HANDSHAKE);
                     render();
                 })
                 .show();
+    }
+
+    private List<HistoryStore.Entry> visible(List<HistoryStore.Entry> all) {
+        List<HistoryStore.Entry> out = new ArrayList<>();
+        for (HistoryStore.Entry entry : all) {
+            if (entry.isHandshake() != pixieTab) {
+                out.add(entry);
+            }
+        }
+        return out;
     }
 
     private void render() {
         if (b == null) {
             return;
         }
-        List<HistoryStore.Entry> entries = history.all();
+        List<HistoryStore.Entry> all = history.all();
+        int handshakes = 0;
+        for (HistoryStore.Entry entry : all) {
+            if (entry.isHandshake()) {
+                handshakes++;
+            }
+        }
+        int pixie = all.size() - handshakes;
+
+        b.tabHandshake.setText(getString(R.string.history_tab_handshake, handshakes));
+        b.tabPixie.setText(getString(R.string.history_tab_pixie, pixie));
+        paintTab(b.tabHandshake, !pixieTab);
+        paintTab(b.tabPixie, pixieTab);
+
+        List<HistoryStore.Entry> entries = visible(all);
         b.entries.removeAllViews();
         boolean empty = entries.isEmpty();
         b.emptyState.setVisibility(empty ? View.VISIBLE : View.GONE);
+        b.emptyTitle.setText(pixieTab
+                ? R.string.history_empty_pixie_title : R.string.history_empty_title);
+        b.emptyBody.setText(pixieTab
+                ? R.string.history_empty_pixie_body : R.string.history_empty_body);
         b.btnClear.setEnabled(!empty);
         b.entries.setVisibility(empty ? View.GONE : View.VISIBLE);
         for (HistoryStore.Entry entry : entries) {
             b.entries.addView(createEntry(entry));
         }
+    }
+
+    private void paintTab(TextView tab, boolean selected) {
+        tab.setBackgroundResource(selected ? R.drawable.bg_pill_green : R.drawable.bg_pill_soft);
+        tab.setTextColor(getColor(selected ? R.color.green : R.color.ink_soft));
+        tab.setTypeface(null, selected ? Typeface.BOLD : Typeface.NORMAL);
     }
 
     private View createEntry(HistoryStore.Entry entry) {

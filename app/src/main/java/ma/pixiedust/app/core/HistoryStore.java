@@ -128,6 +128,21 @@ public final class HistoryStore {
         sp.edit().remove(KEY_ENTRIES).apply();
     }
 
+    /** Removes one kind of entry ({@link #TYPE_HANDSHAKE} or {@link #TYPE_CREDENTIALS}). */
+    public synchronized void clear(String type) {
+        if (type == null) {
+            clear();
+            return;
+        }
+        List<Entry> keep = new ArrayList<>();
+        for (Entry e : all()) {
+            if (!type.equals(e.type)) {
+                keep.add(e);
+            }
+        }
+        write(keep);
+    }
+
     private void write(List<Entry> entries) {
         JSONArray array = new JSONArray();
         for (Entry e : entries) {

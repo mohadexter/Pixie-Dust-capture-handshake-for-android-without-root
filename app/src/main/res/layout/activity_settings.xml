@@ -51,11 +51,65 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- Handshake storage -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.PixieDust.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentPadding="18dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_storage_section"
+                        android:textAppearance="@style/TextAppearance.PixieDust.Section" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/settings_storage_body"
+                        android:textAppearance="@style/TextAppearance.PixieDust.Caption" />
+
+                    <TextView
+                        android:id="@+id/handshakePathValue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_mono"
+                        android:drawableStart="@drawable/ic_folder"
+                        android:drawablePadding="8dp"
+                        android:fontFamily="monospace"
+                        android:padding="10dp"
+                        android:textColor="@color/ink_soft"
+                        android:textIsSelectable="true"
+                        android:textSize="11sp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnHandshakeFolder"
+                        style="@style/Widget.PixieDust.Button.Outlined"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/settings_folder_change"
+                        app:icon="@drawable/ic_folder"
+                        app:iconGravity="textStart"
+                        app:iconSize="18dp"
+                        app:iconTint="@color/indigo" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <!-- Scanning -->
             <com.google.android.material.card.MaterialCardView
                 style="@style/Widget.PixieDust.Card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:contentPadding="18dp">
 
                 <LinearLayout
@@ -371,60 +425,6 @@
                         android:layout_marginTop="4dp"
                         android:text="@string/settings_language_note"
                         android:textAppearance="@style/TextAppearance.PixieDust.Caption" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Handshake storage -->
-            <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.PixieDust.Card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:contentPadding="18dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_storage_section"
-                        android:textAppearance="@style/TextAppearance.PixieDust.Section" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/settings_storage_body"
-                        android:textAppearance="@style/TextAppearance.PixieDust.Caption" />
-
-                    <TextView
-                        android:id="@+id/handshakePathValue"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/bg_mono"
-                        android:drawableStart="@drawable/ic_folder"
-                        android:drawablePadding="8dp"
-                        android:fontFamily="monospace"
-                        android:padding="10dp"
-                        android:textColor="@color/ink_soft"
-                        android:textIsSelectable="true"
-                        android:textSize="11sp" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnHandshakeFolder"
-                        style="@style/Widget.PixieDust.Button.Outlined"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/settings_folder_change"
-                        app:icon="@drawable/ic_folder"
-                        app:iconGravity="textStart"
-                        app:iconSize="18dp"
-                        app:iconTint="@color/indigo" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
