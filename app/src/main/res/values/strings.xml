@@ -25,6 +25,8 @@
     <string name="btn_drivers">Adapter</string>
     <string name="btn_settings">Settings</string>
     <string name="cd_settings">Settings</string>
+    <string name="cd_support">Support on Telegram</string>
+    <string name="support_no_browser">No browser available to open Telegram.</string>
     <string name="cd_adapter">Adapter</string>
     <string name="cd_logo">Pixie Dust</string>
     <string name="cd_signal">Signal strength</string>
@@ -43,6 +45,7 @@
     <string name="err_libusb">The USB layer failed. Replug the adapter.</string>
     <string name="err_interface_claim">Could not claim the USB interface. Replug the adapter.</string>
     <string name="err_driver_init">The driver could not start on this adapter.</string>
+    <string name="err_rfkill_off">The adapter reports its radio switch as off. Turn the switch on, or replug the adapter into another USB port.</string>
     <string name="err_zero_frames">The adapter opened but no radio frames arrived.</string>
     <string name="err_no_beacons">Received %1$d frames, but no access point could be decoded.</string>
     <string name="err_scan_empty">No Wi-Fi networks in this scan.</string>
@@ -163,6 +166,9 @@
     <string name="settings_folder_invalid">Use a name without / or ..</string>
     <string name="settings_folder_pick_failed">The system folder picker is not available</string>
     <string name="settings_folder_saved">Folder updated</string>
+    <string name="settings_updates_section">Updates</string>
+    <string name="settings_updates_body">Checks GitHub on launch when online. Nothing is downloaded or installed without your choice.</string>
+    <string name="settings_check_updates">Check for updates</string>
 
     <!-- ================= Drivers ================= -->
     <string name="drivers_title">Adapter</string>

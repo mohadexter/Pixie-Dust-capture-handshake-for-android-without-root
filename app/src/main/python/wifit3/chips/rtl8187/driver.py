@@ -199,7 +199,12 @@ class RTL8187Driver(Driver):
                 self.mac_address, pr.chip.name, pr.setup.asic_rev, pr.setup.variant.value,
             )
             if not pr.rfkill_off:
-                raise BringUpError("rfkill", "hardware radio switch reads OFF")
+                raise BringUpError(
+                    "rfkill",
+                    "hardware radio switch reads OFF "
+                    f"({pr.rfkill_diag}); make sure the adapter's radio switch is ON "
+                    "and try another USB port",
+                )
             if pr.chip.is_rtl8187b and pr.chip.hw_rev is not None:
                 logger.warning("RTL8187B (%s): ported from the kernel source, untested on hardware",
                                pr.chip.hw_rev.name)

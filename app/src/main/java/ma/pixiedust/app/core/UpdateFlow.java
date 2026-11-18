@@ -1,7 +1,11 @@
 package ma.pixiedust.app.core;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageInfo;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.os.Build;
 import android.widget.Toast;
 
@@ -17,11 +21,14 @@ import ma.pixiedust.app.ui.WhatsNewDialog;
 public final class UpdateFlow {
 
     private static boolean dialogShowing;
+    private static Integer lastShownVersion;
 
     private UpdateFlow() {
     }
 
-    /** Called once per launch from the scan screen, after the disclaimer. */
+    /** Called once per launch from the scan screen, after the disclaimer.
+     *  With a connection, this asks GitHub on every launch; the check is
+     *  non-blocking, silent when offline, and never forces an install. */
     public static void onLaunch(Activity activity) {
         Prefs prefs = new Prefs(activity);
         UpdateNotifier.ensureChannel(activity);
@@ -42,10 +49,32 @@ public final class UpdateFlow {
             prefs.setSeenVersion(current);
         }
 
-        check(activity, false, false);
+        if (hasInternet(activity)) {
+            check(activity, true, false);
+        }
     }
 
-    /** About > Check for updates: always talks to GitHub and always answers. */
+    /** True when Android reports a network that can reach the internet. */
+    private static boolean hasInternet(Context context) {
+        try {
+            ConnectivityManager cm = (ConnectivityManager)
+                    context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (cm == null) {
+                return false;
+            }
+            Network network = cm.getActiveNetwork();
+            if (network == null) {
+                return false;
+            }
+            NetworkCapabilities caps = cm.getNetworkCapabilities(network);
+            return caps != null
+                    && caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET);
+        } catch (Exception ignored) {
+            return false;
+        }
+    }
+
+    /** Settings > Updates > Check for updates: always talks to GitHub, always answers. */
     public static void checkManually(Activity activity) {
         Toast.makeText(activity, R.string.update_checking, Toast.LENGTH_SHORT).show();
         check(activity, true, true);
@@ -86,6 +115,13 @@ public final class UpdateFlow {
             if (!interactive && prefs.dismissedUpdate() >= manifest.versionCode) {
                 return;
             }
+            // Foreground checks run often; don't nag with the same release twice
+            // in one process. A genuinely newer version still shows up.
+            if (!interactive && lastShownVersion != null
+                    && lastShownVersion == manifest.versionCode) {
+                return;
+            }
+            lastShownVersion = manifest.versionCode;
             UpdateNotifier.available(activity, manifest);
             showAvailable(activity, manifest, current);
         });

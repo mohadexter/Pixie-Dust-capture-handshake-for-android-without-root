@@ -1230,7 +1230,7 @@ def _outcome_to_verify_result(
 
     detail = outcome.detail or outcome.result.value
     if status_code == "no_m1" and not outcome.reached_m1:
-        detail = "الراوتر ما بداش جلسة WPS جديدة — تسنّى 60 ثانية وأعد المحاولة"
+        detail = "The router didn't start a new WPS session. Wait about a minute, then try again."
 
     return VerifyResult(
         attempted=bool(getattr(outcome, "m4_sent", False) or outcome.reached_m1),
@@ -1582,7 +1582,7 @@ async def _auto_pin_to_psk(
 
         if not verify_res.reached_m1 and not verify_res.m4_sent:
             verify_res.status_code = "no_m1"
-            verify_res.detail = "الراوتر ما بداش جلسة WPS جديدة — تسنّى 60 ثانية وأعد المحاولة"
+            verify_res.detail = "The router didn't start a new WPS session. Wait about a minute, then try again."
 
     if verify_res.ok and ui:
         ui.info("[STAGE] PASSWORD")

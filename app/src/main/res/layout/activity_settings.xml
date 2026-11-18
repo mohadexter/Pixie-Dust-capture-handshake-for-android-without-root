@@ -104,6 +104,46 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Updates -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.PixieDust.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:contentPadding="18dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_updates_section"
+                        android:textAppearance="@style/TextAppearance.PixieDust.Section" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/settings_updates_body"
+                        android:textAppearance="@style/TextAppearance.PixieDust.Caption" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCheckUpdates"
+                        style="@style/Widget.PixieDust.Button.Outlined"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/settings_check_updates"
+                        app:icon="@drawable/ic_refresh"
+                        app:iconGravity="textStart"
+                        app:iconSize="18dp"
+                        app:iconTint="@color/indigo" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <!-- Scanning -->
             <com.google.android.material.card.MaterialCardView
                 style="@style/Widget.PixieDust.Card"

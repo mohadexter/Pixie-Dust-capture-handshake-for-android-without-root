@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,11 +24,28 @@ import ma.pixiedust.app.R;
  * {@code TL-WR841N}, {@code TP-LINK Wireless Router TL-WR841N} or
  * {@code TL-WR841N 14.0}. Everything is compared in a compact form (letters and
  * digits only, lower case), with a trailing hardware version dropped.
+ *
+ * <p>A generic label is <em>not</em> a model. Strings such as {@code Wireless AP},
+ * {@code Wireless Access Point} or {@code WPS Router} only describe the device
+ * class; they never turn a network into a "Pixie" target on their own. At least
+ * one real model token (a token containing a digit, e.g. {@code TL-WR841N},
+ * {@code RT2860}, {@code DIR-615}) has to be present before the tolerant
+ * substring matching is allowed to run.
  */
 public final class KnownModels {
 
     private static final Object LOCK = new Object();
     private static volatile Set<String> keys;
+
+    /** Compact forms of labels that describe a device class, not a model. */
+    private static final Set<String> GENERIC = new HashSet<>(Arrays.asList(
+            "ap", "wifiap", "wirelessap", "aprouter", "wirelessapprouter",
+            "wireless", "wirelessaccess", "accesspoint", "wirelessaccesspoint",
+            "router", "wirelessrouter", "wpsrouter", "routerwps",
+            "wifi", "wps", "wifiprotectedsetup", "protectedsetup", "setup",
+            "network", "networkdevice", "device", "default", "hostname",
+            "gateway", "modem", "internet", "home", "series", "box"
+    ));
 
     private KnownModels() {
     }
@@ -42,9 +60,18 @@ public final class KnownModels {
             return false;
         }
         Set<String> all = keys(context);
+
+        // Exact hit first: this is what keeps firmware placeholders such as
+        // "<#ZVMODELVZ#>" and bare chipset strings working.
         if (all.contains(mine)) {
             return true;
         }
+
+        // Never promote a generic class name ("Wireless AP") to a known model.
+        if (!hasModelToken(model)) {
+            return false;
+        }
+
         for (String key : all) {
             // "TP-LINK Wireless Router TL-WR841N" contains "tlwr841n"
             if (key.length() >= 5 && mine.contains(key)) {
@@ -54,6 +81,26 @@ public final class KnownModels {
             if (mine.length() >= 5 && key.contains(mine)) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    /** A token with a digit that is not one of the generic class labels. */
+    private static boolean hasModelToken(String value) {
+        if (value == null) {
+            return false;
+        }
+        String[] parts = value.split("[^A-Za-z0-9]+");
+        for (String part : parts) {
+            String token = compact(part);
+            if (token.length() < 3 || GENERIC.contains(token) || !hasDigit(token)) {
+                continue;
+            }
+            // A bare hardware version ("1.0", "v3") is not a model either.
+            if (part.matches("(?i)v?\\d{1,2}(\\.\\d+)*")) {
+                continue;
+            }
+            return true;
         }
         return false;
     }
@@ -84,11 +131,22 @@ public final class KnownModels {
                 }
                 // Whole line, line without its hardware version, and every
                 // model-looking token inside it ("ADSL RT2860" -> "rt2860").
-                add(out, compact(text));
-                add(out, compact(base(text)));
+                // Generic class labels are skipped so "Wireless AP" never
+                // becomes a key that matches every access point.
+                String whole = compact(text);
+                String stem = compact(base(text));
+                if (!GENERIC.contains(whole)) {
+                    add(out, whole);
+                }
+                if (!GENERIC.contains(stem)) {
+                    add(out, stem);
+                }
                 for (String token : text.split("\\s+")) {
                     if (hasDigit(token)) {
-                        add(out, compact(token));
+                        String compactToken = compact(token);
+                        if (!GENERIC.contains(compactToken)) {
+                            add(out, compactToken);
+                        }
                     }
                 }
             }

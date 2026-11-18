@@ -1,4 +1,51 @@
-﻿# Pixie Dust 1.0.7 — Optional In-App Updates
+﻿# Pixie Dust 1.0.8 — Adapter Diagnostics, Cleaner Highlights, Launch Update Check
+
+Release number: 1.0.8 (versionCode 9).
+
+This release is a maintenance and interface pass. No capture, PIN-recovery or
+history behaviour changed.
+
+## What is new in this release
+
+1. **RTL8187 radio detection**
+   - The rfkill GPIO is sampled repeatedly and cross-checked against both known
+     masks (`0x2` and `0x4`) before the adapter is declared switched off. This
+     removes false "hardware radio switch reads OFF" failures on dongles with no
+     physical switch.
+   - A genuine switch that stays off is still respected; the error now carries
+     the raw GPIO readings and a clear English/French instruction.
+
+2. **English/French only**
+   - The remaining Arabic/Darija strings in the Python CLI layer were replaced,
+     including the "router didn't start a WPS session" message.
+
+3. **Smarter known-model highlight**
+   - Generic labels such as `Wireless AP` or `Wireless Access Point` no longer
+     make a network look supported. A real model token is required.
+   - 699 additional model strings from public WPS/Pixie-Dust databases were
+     merged into the offline list; the original 142 field-reported entries,
+     including firmware placeholders, were kept untouched.
+
+4. **Update check on every app entry**
+   - With a connection, GitHub is checked on each foreground visit; the request
+     is non-blocking and silent on failure.
+   - **Check for updates** moved from **About** to a new **Updates** card in
+     **Settings**. Download, verification and explicit install are unchanged.
+
+5. **Support**
+   - A Telegram support button (`https://t.me/PixieDustapp`) sits in the scan
+     screen header.
+
+## Verification
+
+- Package `ma.pixiedust.app`, versionCode 9, versionName 1.0.8, minSdk 24,
+  targetSdk 36, `arm64-v8a` + `armeabi-v7a`.
+- Signed with the existing release key (`apksigner` certificate SHA-256
+  `18fab906...`).
+
+---
+
+# Pixie Dust 1.0.7 — Optional In-App Updates
 
 Release number: 1.0.7 (versionCode 8).
 

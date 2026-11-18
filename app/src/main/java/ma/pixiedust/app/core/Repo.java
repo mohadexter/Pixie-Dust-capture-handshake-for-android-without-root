@@ -1132,6 +1132,9 @@ public final class Repo {
         if (lower.contains("locked")) {
             return PixieError.of(PixieError.Kind.WPS_LOCKED, raw);
         }
+        if (lower.contains("rfkill") || lower.contains("radio switch")) {
+            return PixieError.of(PixieError.Kind.RFKILL_OFF, raw);
+        }
         if (lower.contains("bringup_failed") || lower.contains("driver")) {
             return PixieError.of(PixieError.Kind.DRIVER_INIT, raw);
         }

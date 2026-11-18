@@ -11,9 +11,11 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Reads {@code docs/update.json} from the project's GitHub page, at most once a
- * day unless the user asks explicitly. Everything is optional: a failed request
- * leaves the app untouched, and the last good answer stays cached on disk.
+ * Reads {@code docs/update.json} from the project's GitHub page. Launch and
+ * manual checks pass {@code force=true} so every launch with a connection gets
+ * a fresh answer; older callers still get the once-a-day cache. Everything is
+ * optional: a failed request leaves the app untouched, and the last good
+ * answer stays cached on disk as an offline fallback.
  */
 public final class UpdateChecker {
 

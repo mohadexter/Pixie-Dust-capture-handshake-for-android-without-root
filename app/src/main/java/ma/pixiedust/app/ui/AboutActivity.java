@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ma.pixiedust.app.R;
-import ma.pixiedust.app.core.UpdateFlow;
 import ma.pixiedust.app.databinding.ActivityAboutBinding;
 
 /** Static identity, guarantees, and licence. */
@@ -22,7 +21,6 @@ public class AboutActivity extends AppCompatActivity {
         b.btnBack.setOnClickListener(v -> finish());
         b.btnClose.setOnClickListener(v -> finish());
         b.btnReleaseNotes.setOnClickListener(v -> WhatsNewDialog.showReleaseNotes(this));
-        b.btnCheckUpdates.setOnClickListener(v -> UpdateFlow.checkManually(this));
         b.versionText.setText(getString(R.string.about_version, versionName()));
     }
 

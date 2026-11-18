@@ -48,6 +48,16 @@
         </LinearLayout>
 
         <ImageButton
+            android:id="@+id/btnSupport"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cd_support"
+            android:padding="11dp"
+            android:src="@drawable/ic_info"
+            app:tint="@color/ink" />
+
+        <ImageButton
             android:id="@+id/btnHistory"
             android:layout_width="46dp"
             android:layout_height="46dp"

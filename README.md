@@ -39,7 +39,7 @@ The app is written in **Java + XML** with an internal **Python** engine, and run
 
 ## Build and verification status
 
-This source tree builds release `1.0.7` (versionCode `8`). Verify the produced APK with `apksigner` before installing it, and check the package/version with `aapt2 dump badging`.
+This source tree builds release `1.0.8` (versionCode `9`). Verify the produced APK with `apksigner` before installing it, and check the package/version with `aapt2 dump badging`.
 
 Physical testing with an Android phone and a supported USB OTG Wi-Fi adapter is still required. No real-device test is claimed here.
 
@@ -95,7 +95,7 @@ The app runs on any Android phone from Android 7.0 up to Android 16, as long as 
 
 ## Screenshots (real device)
 
-The following screenshots were taken on a real Android phone running Pixie Dust 1.0.7.
+The following screenshots were taken on a real Android phone running Pixie Dust 1.0.8.
 
 ![Scan screen](docs/screenshots/screen1.jpg)
 

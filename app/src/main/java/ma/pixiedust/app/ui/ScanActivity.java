@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.usb.UsbDevice;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -61,6 +62,14 @@ public class ScanActivity extends AppCompatActivity implements Repo.Listener {
         b.btnDrivers.setOnClickListener(v -> startActivity(new Intent(this, DriversActivity.class)));
         b.btnHistory.setOnClickListener(v -> startActivity(new Intent(this, HistoryActivity.class)));
         b.btnSettings.setOnClickListener(v -> startActivity(new Intent(this, SettingsActivity.class)));
+        b.btnSupport.setOnClickListener(v -> {
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://t.me/PixieDustapp")));
+            } catch (Exception ignored) {
+                Ui.toast(this, R.string.support_no_browser);
+            }
+        });
 
         askForNotificationPermission();
         handleIntent(getIntent());
@@ -91,6 +100,8 @@ public class ScanActivity extends AppCompatActivity implements Repo.Listener {
     protected void onPause() {
         repo.setForeground(false);
         repo.removeListener(this);
+        // A fresh foreground visit is a fresh (silent) update check.
+        updatesChecked = false;
         super.onPause();
     }
 

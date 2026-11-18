@@ -20,6 +20,7 @@ import ma.pixiedust.app.PixieApp;
 import ma.pixiedust.app.R;
 import ma.pixiedust.app.core.Prefs;
 import ma.pixiedust.app.core.Repo;
+import ma.pixiedust.app.core.UpdateFlow;
 import ma.pixiedust.app.databinding.ActivitySettingsBinding;
 import ma.pixiedust.app.usb.Adapters;
 
@@ -61,6 +62,7 @@ public class SettingsActivity extends AppCompatActivity {
         b.btnBack.setOnClickListener(v -> finish());
         b.btnDrivers.setOnClickListener(v -> startActivity(new Intent(this, DriversActivity.class)));
         b.btnAbout.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
+        b.btnCheckUpdates.setOnClickListener(v -> UpdateFlow.checkManually(this));
 
         bindSliders();
         bindSwitches();

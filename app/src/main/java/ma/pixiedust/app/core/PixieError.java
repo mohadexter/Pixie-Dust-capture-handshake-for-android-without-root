@@ -22,6 +22,7 @@ public final class PixieError {
         LIBUSB,
         INTERFACE_CLAIM,
         DRIVER_INIT,
+        RFKILL_OFF,
         ZERO_FRAMES,
         NO_BEACONS,
         SCAN_EMPTY,
@@ -99,6 +100,8 @@ public final class PixieError {
                 return R.string.err_interface_claim;
             case DRIVER_INIT:
                 return R.string.err_driver_init;
+            case RFKILL_OFF:
+                return R.string.err_rfkill_off;
             case ZERO_FRAMES:
                 return R.string.err_zero_frames;
             case NO_BEACONS:

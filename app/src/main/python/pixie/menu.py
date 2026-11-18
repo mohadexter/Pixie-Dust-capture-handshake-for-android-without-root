@@ -231,11 +231,11 @@ def ask(ui, prompt: str, default: bool = False) -> bool:
     answer = (read_line(ui, None) or "").strip().lower()
     if not answer:
         return default
-    return answer in ("y", "yes", "o", "oui", "نعم", "ن")
+    return answer in ("y", "yes", "o", "oui")
 
 
 def pause(ui) -> None:
-    ui.write("  Enter للرجوع ... ")
+    ui.write("  Enter to go back ... ")
     read_line(ui, None)
     ui.line()
 
@@ -253,9 +253,9 @@ def parse_choice(text: str, count: int):
     * an ``int``      -> 0-based index into the list
     """
     answer = (text or "").strip().lower()
-    if answer in ("q", "quit", "exit", "خروج", "خ"):
+    if answer in ("q", "quit", "exit"):
         return "quit"
-    if answer in ("r", "refresh", "تحديث", ""):
+    if answer in ("r", "refresh", ""):
         return "refresh"
     if answer.isdigit():
         index = int(answer)
@@ -269,31 +269,31 @@ def parse_choice(text: str, count: int):
 
 
 async def _scan(session, ui, timeout: float, first: bool = False) -> list:
-    ui.info(("الجاري نقلب على الشبكات ... (green = WPS)" if first
-             else "تحديث البحث ..."))
+    ui.info(("Scanning for networks ... (green = WPS)" if first
+             else "Refreshing the scan ..."))
     return await session.scan(timeout=timeout, ui=None, include_all=True)
 
 
 def _draw_dashboard(ui, aps, refresh: float, adapter: str) -> None:
     clear_screen(ui)
-    ui.title("pixie — شبكات Wi-Fi")
+    ui.title("pixie — Wi-Fi networks")
     ui.line(f"  adapter: {adapter}   ({len(aps)} AP)")
     if aps:
         print_ap_table(ui, aps, numbered=True)
     else:
-        ui.warn("ما لقيتش حتى شبكة فـ هاد البحث.")
+        ui.warn("No network was found in this scan.")
         if refresh > 0:
-            ui.info(f"غادي نعاود نقلب بوحدي كل {int(refresh)}s — ولا دير r دابا.")
+            ui.info(f"Auto-refresh in {int(refresh)}s — or press r now.")
         else:
-            ui.info("دير r باش تعاود البحث.")
-        ui.info("شيك: الكارت فـ OTG؟ الـ AP قريب؟ جرب --scan-timeout 30")
-        ui.info("RT5370/AR9271 كيخدمو غير 2.4GHz (channels 1-13).")
+            ui.info("Press r to rescan.")
+        ui.info("Check: adapter on OTG? AP nearby? Try --scan-timeout 30")
+        ui.info("RT5370/AR9271 only support 2.4 GHz (channels 1-13).")
     ui.line()
-    ui.line("  " + ui.paint("green", WPS_ON_COLOR) + " = فيها WPS (PixieDust)   "
-            + ui.paint("red", WPS_OFF_COLOR) + " = بلا WPS")
+    ui.line("  " + ui.paint("green", WPS_ON_COLOR) + " = WPS on (PixieDust)   "
+            + ui.paint("red", WPS_OFF_COLOR) + " = WPS off")
     if refresh > 0:
-        ui.line(f"  البحث كيتحدث بوحدو كل {int(refresh)}s — ما خاصك تدير والو.")
-    ui.line("  [رقم] هجوم على الشبكة   [r] تحديث   [q] خروج")
+        ui.line(f"  Auto-refresh every {int(refresh)}s — no action needed.")
+    ui.line("  [number] attack a network   [r] refresh   [q] quit")
 
 
 async def _crack(values, opts, modes, ui):
@@ -311,19 +311,19 @@ async def _crack(values, opts, modes, ui):
 
 
 def _print_details(ui, ap) -> None:
-    ui.title("تفاصيل الشبكة")
+    ui.title("Network details")
     ui.kv(details_rows(ap))
 
 
 def _print_outcome(ui, capture, outcome, verify) -> None:
-    ui.title("النتيجة")
+    ui.title("Result")
     if not outcome.success or not outcome.pin:
-        ui.bad("ما لقيتش PIN بهاد القيم.")
+        ui.bad("No PIN found with these values.")
         if outcome.first_half:
-            ui.info(f"النص اللول من الـ PIN: {outcome.first_half}")
+            ui.info(f"First half of the PIN: {outcome.first_half}")
         for note in outcome.notes:
             ui.warn(note)
-        ui.info("جرب: pixie menu --deep (بطيء ولكن كيغطي RTL819x)")
+        ui.info("Try: pixie menu --deep (slower, covers RTL819x)")
         return
 
     ui.ok(f"WPS PIN: {outcome.pin}")
@@ -339,10 +339,10 @@ def _print_outcome(ui, capture, outcome, verify) -> None:
             ui.title("password")
             ui.line("  " + ui.paint(outcome.psk, "green", bold=True))
             return
-        ui.info("الـ password ما كيتجابش بلا تأكيد: خاص محاولة WPS حقيقية وحدة.")
+        ui.info("The password needs confirmation: one real WPS attempt.")
         return
     if verify.ok:
-        ui.ok("الـ PIN صحيح — الـ AP قبلو.")
+        ui.ok("PIN is correct — the AP accepted it.")
         if verify.psk:
             ui.title("password")
             ui.line("  " + ui.paint(verify.psk, "green", bold=True))
@@ -350,9 +350,9 @@ def _print_outcome(ui, capture, outcome, verify) -> None:
                 ui.line()
                 ui.info(f"SSID: {verify.ssid}")
         else:
-            ui.warn("الـ AP قبل الـ PIN ولكن ما عطاناش الـ PSK فهاد الرد.")
+            ui.warn("The AP accepted the PIN but returned no PSK in this reply.")
     else:
-        ui.bad(f"الـ AP رفض الـ PIN ({verify.detail or 'بلا تفاصيل'})")
+        ui.bad(f"The AP rejected the PIN ({verify.detail or 'no details'})")
 
 
 async def _handle(ui, session, ap, opts, modes) -> None:
@@ -361,22 +361,22 @@ async def _handle(ui, session, ap, opts, modes) -> None:
     ui.line()
 
     if not ap.wps:
-        ui.bad("هاد الشبكة ما فيهاش WPS — PixieDust ما يقدرش يخدم عليها.")
-        ui.info("ختار شبكة خضراء من اللائحة.")
+        ui.bad("This network has no WPS — PixieDust cannot be used on it.")
+        ui.info("Pick a green network from the list.")
         pause(ui)
         return
     if not ap.channel:
-        ui.bad("channel ما معروفش، ما نقدرش ندخلو. عاود البحث ولا استعمل live attack.")
+        ui.bad("Channel unknown. Rescan or use a live attack with --channel.")
         pause(ui)
         return
     if not ap.ssid:
-        ui.bad("SSID مخبي. استعمل: pixie live attack <bssid> --ssid <SSID> --channel <ch>")
+        ui.bad("Hidden SSID. Use: pixie live attack <bssid> --ssid <SSID> --channel <ch>")
         pause(ui)
         return
     if ap.locked:
-        ui.warn("هاد الـ AP كيقول WPS locked — غالبا غادي يرفض المحاولة.")
+        ui.warn("This AP reports WPS locked — the attempt will likely be refused.")
 
-    if not ask(ui, "واش نبدا هجوم PixieDust على هاد الشبكة؟", default=True):
+    if not ask(ui, "Start a PixieDust attempt on this network?", default=True):
         return
 
     try:
@@ -387,12 +387,12 @@ async def _handle(ui, session, ap, opts, modes) -> None:
         pause(ui)
         return
     except Exception as exc:  # pragma: no cover - hardware dependent
-        ui.bad(f"خطأ غير متوقع: {exc}")
+        ui.bad(f"Unexpected error: {exc}")
         pause(ui)
         return
 
     ui.line()
-    ui.info("M3 تنجح — الجاري البحث offline على الـ PIN ...")
+    ui.info("M3 captured — searching for the PIN offline ...")
     try:
         outcome = await _crack(capture.values(), opts, modes, ui)
     except util.PixieError as exc:
@@ -403,13 +403,13 @@ async def _handle(ui, session, ap, opts, modes) -> None:
     verify = None
     if outcome.pin:
         ui.line()
-        if ask(ui, "تأكيد الـ PIN وجلب password؟ (محاولة WPS حقيقية وحدة)", default=False):
+        if ask(ui, "Verify the PIN and fetch the password? (one real WPS attempt)", default=False):
             try:
                 verify = await session.verify_pin(ap, outcome.pin, ui=ui)
             except util.PixieError as exc:
                 ui.bad(str(exc))
             except Exception as exc:  # pragma: no cover - hardware dependent
-                ui.bad(f"خطأ فـ التأكيد: {exc}")
+                ui.bad(f"Verification error: {exc}")
 
     _print_outcome(ui, capture, outcome, verify)
     pause(ui)
@@ -439,17 +439,17 @@ async def run(ui, args) -> int:
 
             if action == "quit":
                 ui.line()
-                ui.info("بسلامة!")
+                ui.info("Goodbye!")
                 return 0
             if action == "refresh":
                 aps = await _scan(session, ui, scan_timeout)
                 continue
             if action == "out-of-range":
-                ui.warn("ما كاينش شبكة بهاد الرقم. عاود.")
+                ui.warn("No network with that number. Try again.")
                 time.sleep(1.2)
                 continue
             if action == "unknown":
-                ui.warn("دخل رقم من اللائحة، ولا r للتحديث، ولا q للخروج.")
+                ui.warn("Enter a number from the list, r to refresh, or q to quit.")
                 time.sleep(1.2)
                 continue
 
@@ -466,5 +466,5 @@ def main(ui, args) -> int:
         return asyncio.run(run(ui, args))
     except KeyboardInterrupt:
         ui.line()
-        ui.info("توقفت.")
+        ui.info("Stopped.")
         return 130

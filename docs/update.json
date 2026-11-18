@@ -1,10 +1,52 @@
 {
-  "versionCode": 8,
-  "versionName": "1.0.7",
-  "url": "https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root/releases/download/v1.0.7/PixieDust-release.apk",
-  "sha256": "b12acff9f339e97e6f578ddb0e5bde747ed9d7778ae911d5e948f1a84c846e0b",
-  "size": 31809802,
+  "versionCode": 9,
+  "versionName": "1.0.8",
+  "url": "https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root/releases/download/v1.0.8/PixieDust-release.apk",
+  "sha256": "852264db32d59f4cbad38d8f821610677b4bc5c136b4916304df43190188fe00",
+  "size": 31821134,
   "changelog": [
+    {
+      "versionCode": 9,
+      "versionName": "1.0.8",
+      "date": "2026-11-18",
+      "items": [
+        {
+          "type": "fix",
+          "en": "RTL8187 bring-up now samples the rfkill GPIO and cross-checks both known masks before reporting the radio as off",
+          "fr": "Le démarrage RTL8187 relit le GPIO rfkill et vérifie les deux masques connus avant de signaler la radio comme éteinte"
+        },
+        {
+          "type": "fix",
+          "en": "Clear English/French guidance when the adapter's hardware radio switch really is off",
+          "fr": "Un message clair en anglais et en français lorsque l'interrupteur radio de l'adaptateur est vraiment éteint"
+        },
+        {
+          "type": "fix",
+          "en": "Removed the remaining Arabic and Darija strings: the interface stays English/French only",
+          "fr": "Suppression des dernières chaînes en arabe et en darija : l'interface reste uniquement en anglais et en français"
+        },
+        {
+          "type": "new",
+          "en": "More router models from public WPS databases are recognised offline; generic labels such as 'Wireless AP' no longer count as a supported model",
+          "fr": "Davantage de modèles de routeurs issus de bases WPS publiques sont reconnus hors ligne ; les libellés génériques comme « Wireless AP » ne comptent plus comme un modèle pris en charge"
+        },
+        {
+          "type": "new",
+          "en": "Update check runs on every app entry when online, quietly and without blocking the app",
+          "fr": "La vérification des mises à jour se fait à chaque ouverture de l'application lorsqu'une connexion est disponible, sans la bloquer"
+        },
+        {
+          "type": "new",
+          "en": "Check for updates moved from About to Settings; the in-app download remains optional",
+          "fr": "La vérification des mises à jour passe de À propos à Réglages ; le téléchargement dans l'application reste facultatif"
+        },
+        {
+          "type": "new",
+          "en": "Telegram support link in the scan screen header",
+          "fr": "Lien de assistance Telegram dans l'en-tête de l'écran de balayage"
+        }
+      ]
+    },
     {
       "versionCode": 8,
       "versionName": "1.0.7",
@@ -18,7 +60,7 @@
         {
           "type": "new",
           "en": "Download with SHA-256 and signature verification, then the system installer",
-          "fr": "Téléchargement vérifié par SHA-256 et par signature, puis l’installateur du système"
+          "fr": "Téléchargement vérifié par SHA-256 et par signature, puis l'installateur du système"
         },
         {
           "type": "new",
@@ -28,12 +70,12 @@
         {
           "type": "new",
           "en": "Nothing is forced: Later hides the notice until the next release",
-          "fr": "Rien n’est imposé : Plus tard masque l’avis jusqu’à la prochaine version"
+          "fr": "Rien n'est imposé : Plus tard masque l'avis jusqu'à la prochaine version"
         },
         {
           "type": "fix",
           "en": "The About screen no longer claims there is no INTERNET permission: the network is used only for the update check",
-          "fr": "L’écran À propos ne prétend plus qu’il n’y a pas d’autorisation INTERNET : le réseau sert uniquement à la vérification des mises à jour"
+          "fr": "L'écran À propos ne prétend plus qu'il n'y a pas d'autorisation INTERNET : le réseau sert uniquement à la vérification des mises à jour"
         }
       ]
     },
@@ -55,7 +97,7 @@
         {
           "type": "new",
           "en": "The history button now uses a clock icon instead of a folder",
-          "fr": "Le bouton de l’historique utilise une icône d’horloge au lieu d’un dossier"
+          "fr": "Le bouton de l'historique utilise une icône d'horloge au lieu d'un dossier"
         },
         {
           "type": "new",
@@ -72,7 +114,7 @@
         {
           "type": "new",
           "en": "Redesigned network action cards, equal height, 26dp corners",
-          "fr": "Cartes d’action réseau redessinées, hauteur égale, coins de 26 dp"
+          "fr": "Cartes d'action réseau redessinées, hauteur égale, coins de 26 dp"
         },
         {
           "type": "new",
@@ -82,7 +124,7 @@
         {
           "type": "fix",
           "en": "Warning icon when a capture stops before completing",
-          "fr": "Icône d’avertissement quand une capture s’arrête avant la fin"
+          "fr": "Icône d'avertissement quand une capture s'arrête avant la fin"
         },
         {
           "type": "new",

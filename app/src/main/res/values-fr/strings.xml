@@ -25,6 +25,8 @@
     <string name="btn_drivers">Adaptateur</string>
     <string name="btn_settings">Réglages</string>
     <string name="cd_settings">Réglages</string>
+    <string name="cd_support">Assistance sur Telegram</string>
+    <string name="support_no_browser">Aucun navigateur pour ouvrir Telegram.</string>
     <string name="cd_adapter">Adaptateur</string>
     <string name="cd_logo">Pixie Dust</string>
     <string name="cd_signal">Intensité du signal</string>
@@ -43,6 +45,7 @@
     <string name="err_libusb">La couche USB a échoué. Rebranchez l’adaptateur.</string>
     <string name="err_interface_claim">Impossible de réserver l’interface USB. Rebranchez l’adaptateur.</string>
     <string name="err_driver_init">Le pilote n’a pas pu démarrer sur cet adaptateur.</string>
+    <string name="err_rfkill_off">L’adaptateur signale son interrupteur radio sur off. Allumez l’interrupteur ou rebranchez l’adaptateur sur un autre port USB.</string>
     <string name="err_zero_frames">L’adaptateur s’est ouvert, mais aucun trame radio n’est arrivé.</string>
     <string name="err_no_beacons">J’ai reçu %1$d trames, mais aucun point d’accès n’a pu être décodé.</string>
     <string name="err_scan_empty">Aucun réseau Wi-Fi dans ce balayage.</string>
@@ -163,6 +166,9 @@
     <string name="settings_folder_invalid">Utilisez un nom sans / ni ..</string>
     <string name="settings_folder_pick_failed">Le sélecteur de dossier système n’est pas disponible</string>
     <string name="settings_folder_saved">Dossier mis à jour</string>
+    <string name="settings_updates_section">Mises à jour</string>
+    <string name="settings_updates_body">Vérifie GitHub au lancement lorsque vous êtes en ligne. Rien n’est téléchargé ni installé sans votre accord.</string>
+    <string name="settings_check_updates">Vérifier les mises à jour</string>
 
     <!-- ================= Drivers ================= -->
     <string name="drivers_title">Adaptateur</string>

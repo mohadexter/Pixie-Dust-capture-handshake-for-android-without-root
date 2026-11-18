@@ -31,7 +31,7 @@ from .constants import (
 )
 from .eeprom import Eeprom93cx6, eeprom_width
 from .mac import ChipVariant, detect_chip_variant, detect_rtl8187b_hw_rev
-from .rfkill import is_radio_enabled
+from .rfkill import radio_enabled_stable
 from .rtl8225 import RfSetup, TxPower, detect_rf
 from .transport import RTL8187Transport
 
@@ -48,8 +48,9 @@ class ProbeResult:
     chip: ChipVariant
     setup: RfSetup          # asic_rev + RF variant (for set_channel dispatch)
     power: TxPower          # per-channel hw_value + txpwr_base (for set_tx_power)
-    rfkill_mask: int        # priv->rfkill_mask (dev.c:1607-1612)
+    rfkill_mask: int        # priv->rfkill_mask (dev.c:1607-1612), after fallback selection
     rfkill_off: bool        # priv->rfkill_off: True when the radio switch is ON (rfkill.c:35)
+    rfkill_diag: str = ""   # raw pin readings, kept for the bring-up error message
 
 
 def is_valid_ether_addr(addr: bytes) -> bool:
@@ -125,13 +126,32 @@ def probe(t: RTL8187Transport, product_id: int, is_rtl8187b: bool) -> ProbeResul
                 chip.name, asic_rev, variant.value, rfkill_mask)
 
     ee.read(EEPROM_LED_CUSTID)                              # LED customer-ID (read only)
-    rfkill_off = is_radio_enabled(t, rfkill_mask)          # rtl8187_rfkill_init
+
+    # rfkill is a *polled* GPIO in the kernel; a single cold-probe read is the
+    # classic cause of a false "hardware radio switch reads OFF" on dongles
+    # with no physical switch. Sample it, then cross-check the other known
+    # mask: OEMs have shipped both 0x2 and 0x4 on the same silicon.
+    radio_on, reads = radio_enabled_stable(t, rfkill_mask)  # rtl8187_rfkill_init
+    chosen_mask = rfkill_mask
+    if not radio_on:
+        alternate = (RFKILL_MASK_8198 if rfkill_mask == RFKILL_MASK_8187_89_97
+                     else RFKILL_MASK_8187_89_97)
+        alt_on, alt_reads = radio_enabled_stable(t, alternate)
+        if alt_on:
+            logger.info("rtl8187: rfkill mask 0x%02x read OFF, using 0x%02x instead",
+                        rfkill_mask, alternate)
+            radio_on, chosen_mask, reads = True, alternate, alt_reads
+    rfkill_diag = (f"mask=0x{rfkill_mask:02x}/0x{chosen_mask:02x} "
+                   f"gpio={reads} product=0x{product_id:04x}")
+    if not radio_on:
+        logger.warning("rtl8187: hardware radio switch reads OFF (%s)", rfkill_diag)
 
     return ProbeResult(
         mac=mac,
         chip=chip,
         setup=RfSetup(asic_rev=asic_rev, variant=variant, hw_rev=chip.hw_rev),
         power=TxPower(hw_value=tuple(hw), base=base),
-        rfkill_mask=rfkill_mask,
-        rfkill_off=rfkill_off,
+        rfkill_mask=chosen_mask,
+        rfkill_off=radio_on,
+        rfkill_diag=rfkill_diag,
     )
