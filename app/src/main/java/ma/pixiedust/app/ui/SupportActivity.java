@@ -10,8 +10,11 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.function.IntConsumer;
+
 import ma.pixiedust.app.R;
 import ma.pixiedust.app.databinding.ActivitySupportBinding;
+import ma.pixiedust.app.databinding.ViewDonateRowBinding;
 
 /** Donation addresses with one-tap copy, plus the Telegram support channel. */
 public class SupportActivity extends AppCompatActivity {
@@ -32,6 +35,16 @@ public class SupportActivity extends AppCompatActivity {
         b.btnCopySol.setOnClickListener(v -> copy(R.string.support_sol_address));
         b.btnCopyTrx.setOnClickListener(v -> copy(R.string.support_trx_address));
         b.btnTelegram.setOnClickListener(v -> openTelegram());
+        bindDonations(b.donateRow, this::copy);
+    }
+
+    /** One-tap copy for the shared coin strip (About reuses this). */
+    static void bindDonations(ViewDonateRowBinding row, IntConsumer onCopy) {
+        row.coinBtc.setOnClickListener(v -> onCopy.accept(R.string.support_btc_address));
+        row.coinEth.setOnClickListener(v -> onCopy.accept(R.string.support_eth_address));
+        row.coinLtc.setOnClickListener(v -> onCopy.accept(R.string.support_ltc_address));
+        row.coinSol.setOnClickListener(v -> onCopy.accept(R.string.support_sol_address));
+        row.coinTrx.setOnClickListener(v -> onCopy.accept(R.string.support_trx_address));
     }
 
     private void copy(int addressRes) {

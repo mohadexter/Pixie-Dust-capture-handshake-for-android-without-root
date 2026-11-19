@@ -51,6 +51,7 @@ public final class Adapters {
         // Realtek
         ALL.add(new Info(0x0bda, 0x8187, "RTL8187", "Realtek RTL8187L", "2.4 GHz"));
         ALL.add(new Info(0x0bda, 0x8188, "RTL8188EUS", "Realtek RTL8188EUS", "2.4 GHz"));
+        ALL.add(new Info(0x0bda, 0xf179, "RTL8188FTV", "Realtek RTL8188FTV", "2.4 GHz"));
         ALL.add(new Info(0x0bda, 0x8192, "RTL8192FU", "Realtek RTL8192FU", "2.4 GHz"));
         ALL.add(new Info(0x0bda, 0x8812, "RTL8812AU", "Realtek RTL8812AU (AWUS036ACH)", "2.4/5 GHz"));
         ALL.add(new Info(0x0bda, 0x8813, "RTL8814AU", "Realtek RTL8814AU AC1900", "2.4/5 GHz"));

@@ -221,8 +221,21 @@
                 android:text="@string/about_telegram_support"
                 app:icon="@drawable/ic_telegram"
                 app:iconGravity="textStart"
-                app:iconSize="18dp"
-                app:iconTint="@color/indigo" />
+                app:iconSize="18dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <include
+                    android:id="@+id/donateRow"
+                    layout="@layout/view_donate_row"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSupportProject"
@@ -233,8 +246,7 @@
                 android:text="@string/about_support_project"
                 app:icon="@drawable/ic_coin_btc"
                 app:iconGravity="textStart"
-                app:iconSize="18dp"
-                app:iconTint="@color/indigo" />
+                app:iconSize="18dp" />
 
             <TextView
                 android:layout_width="match_parent"

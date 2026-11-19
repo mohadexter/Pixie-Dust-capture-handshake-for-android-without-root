@@ -27,7 +27,8 @@ def is_radio_enabled(t: RTL8187Transport, mask: int) -> bool:
 
 
 def radio_enabled_stable(t: RTL8187Transport, mask: int,
-                         samples: int = 3) -> tuple[bool, list[tuple[int, int]]]:
+                         samples: int = 3,
+                         write_clear: bool = True) -> tuple[bool, list[tuple[int, int]]]:
     """Sample the RFKILL pin a few times: one 'on' reading is enough.
 
     The kernel polls this GPIO continuously, but this driver only reads it once
@@ -36,6 +37,9 @@ def radio_enabled_stable(t: RTL8187Transport, mask: int,
     though the radio works. Re-reading filters that noise. A switch that is
     genuinely OFF stays OFF in every sample, so no real kill switch is bypassed.
 
+    ``write_clear=False`` only samples; it is used for speculative masks so a
+    guessed bit never drives a GPIO the board may use for something else.
+
     Returns ``(radio_on, [(gpio0, gpio1), ...])``; the raw values are kept for
     the bring-up error message so a real hardware failure can be diagnosed.
     """
@@ -43,7 +47,8 @@ def radio_enabled_stable(t: RTL8187Transport, mask: int,
     on_count = 0
     for _ in range(max(1, samples)):
         gpio0 = t.read8(REG_GPIO0)
-        t.write8(REG_GPIO0, gpio0 & ~mask & 0xFF)
+        if write_clear:
+            t.write8(REG_GPIO0, gpio0 & ~mask & 0xFF)
         gpio1 = t.read8(REG_GPIO1)
         reads.append((gpio0, gpio1))
         if gpio1 & mask:

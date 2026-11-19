@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One-tap donation strip: every coin copies its address. Shared by About and Support. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/coinBtc"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/support_btc"
+        android:padding="9dp"
+        android:src="@drawable/ic_coin_btc" />
+
+    <ImageButton
+        android:id="@+id/coinEth"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/support_eth"
+        android:padding="9dp"
+        android:src="@drawable/ic_coin_eth" />
+
+    <ImageButton
+        android:id="@+id/coinLtc"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/support_ltc"
+        android:padding="9dp"
+        android:src="@drawable/ic_coin_ltc" />
+
+    <ImageButton
+        android:id="@+id/coinSol"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/support_sol"
+        android:padding="9dp"
+        android:src="@drawable/ic_coin_sol" />
+
+    <ImageButton
+        android:id="@+id/coinTrx"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/support_trx"
+        android:padding="9dp"
+        android:src="@drawable/ic_coin_trx" />
+</LinearLayout>

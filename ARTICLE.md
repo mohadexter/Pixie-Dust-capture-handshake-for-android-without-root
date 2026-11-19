@@ -143,6 +143,7 @@ The driver stack covers a wide range of USB adapters. The **Bands** column is th
 | MediaTek | MT7925U | Wi-Fi 7 | **2.4 / 5 / 6 GHz** |
 | Atheros | AR9271 | AWUS036NHA | **2.4 GHz only** |
 | Realtek | RTL8187 / RTL8188EUS / RTL8192FU | — | **2.4 GHz only** |
+| Realtek | RTL8188FTV | — | **2.4 GHz only** |
 | Realtek | RTL8812AU | AWUS036ACH | 2.4 / 5 GHz |
 | Realtek | RTL8814AU | AC1900 | 2.4 / 5 GHz |
 | Realtek | RTL8821AU | AC600 | 2.4 / 5 GHz |

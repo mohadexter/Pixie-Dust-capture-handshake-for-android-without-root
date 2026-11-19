@@ -1,20 +1,40 @@
-﻿# Pixie Dust 1.0.9 — Icons and Clarity
+﻿# Pixie Dust 1.0.9 - RTL8188FTV, Radio Switch Fix, Donations
 
 Release number: 1.0.9 (versionCode 10).
 
-Interface-only polish; nothing about capture, PIN recovery or history changed.
+New adapter support, the RTL8187 false alarm fix, and the support/donation surfaces.
+Capture, PIN recovery and history are unchanged.
 
 ## What is new in this release
 
-1. **Telegram support icon**
-   - The scan header's support button now uses a paper-plane (Telegram) icon instead of a generic info glyph.
+1. **RTL8188FTV support (`0bda:f179`)**
+   - Clean-room port of the vendor DKMS driver (`v4.3.23.6_20964.20170110`), 2.4 GHz only.
+   - Bundled firmware `rtl8188fufw.bin` (21 KB) ships inside the APK and is uploaded at bring-up.
+   - Full bring-up: EFUSE/prom parse, power sequence, IQK/BB calibration, RF init, monitor mode, channel hops, TX/RX rings, watchdog.
+   - Verified with the chip's 183 unit tests (wire-level expectations) before packaging.
 
-2. **Support button in About**
-   - A **Join Telegram support** button sits under **Release notes**, alongside the Telegram support entry in the scan header.
+2. **RTL8187 "radio switch reads OFF" is no longer fatal**
+   - The kernel registers the RFKILL pin as a *polling* rfkill and still brings the card up; this app used to abort instead.
+   - Several RTL8187 clones have no physical switch (floating or inverted pin), so a hard failure blocked working dongles.
+   - The probe now also cross-checks mask `0x01`, logs the raw GPIO readings, and continues bring-up with a clear progress note.
 
-3. **Details**
+3. **Telegram icon and donations**
+   - The support entry now uses the official Telegram mark, in brand blue.
+   - A **Join Telegram support** button sits in About, under **Release notes**.
+   - BTC / ETH / LTC / SOL / TRX icons sit directly under the Telegram entry in About and Support; one tap copies the address.
+
+4. **Details**
    - Header icons use the same ink colour (history, settings, Telegram).
    - The language row's action button now reads **Change** / **Modifier** instead of a second « Language » label.
+
+## Verification
+
+- Package `ma.pixiedust.app`, versionCode 10, versionName 1.0.9, minSdk 24,
+  targetSdk 36, `arm64-v8a` + `armeabi-v7a`.
+- Signed with the existing release key (`apksigner` certificate SHA-256
+  `18fab906...`).
+
+---
 
 ## Verification
 

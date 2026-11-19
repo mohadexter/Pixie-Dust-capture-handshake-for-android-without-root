@@ -130,21 +130,29 @@ def probe(t: RTL8187Transport, product_id: int, is_rtl8187b: bool) -> ProbeResul
     # rfkill is a *polled* GPIO in the kernel; a single cold-probe read is the
     # classic cause of a false "hardware radio switch reads OFF" on dongles
     # with no physical switch. Sample it, then cross-check the other known
-    # mask: OEMs have shipped both 0x2 and 0x4 on the same silicon.
+    # masks: OEMs have shipped 0x2, 0x4 and (on some clones) 0x1 on the same
+    # silicon, and a few boards invert the pin so `gpio & mask` never sets.
     radio_on, reads = radio_enabled_stable(t, rfkill_mask)  # rtl8187_rfkill_init
     chosen_mask = rfkill_mask
-    if not radio_on:
-        alternate = (RFKILL_MASK_8198 if rfkill_mask == RFKILL_MASK_8187_89_97
-                     else RFKILL_MASK_8187_89_97)
-        alt_on, alt_reads = radio_enabled_stable(t, alternate)
+    for alternate in (RFKILL_MASK_8198, RFKILL_MASK_8187_89_97, 0x01):
+        if radio_on or alternate == rfkill_mask:
+            continue
+        # Only read for the speculative 0x01 mask: clearing a bit the board may
+        # use for another GPIO output would be worse than a stale reading.
+        alt_on, alt_reads = radio_enabled_stable(
+            t, alternate, write_clear=(alternate != 0x01))
         if alt_on:
             logger.info("rtl8187: rfkill mask 0x%02x read OFF, using 0x%02x instead",
                         rfkill_mask, alternate)
             radio_on, chosen_mask, reads = True, alternate, alt_reads
+            break
     rfkill_diag = (f"mask=0x{rfkill_mask:02x}/0x{chosen_mask:02x} "
                    f"gpio={reads} product=0x{product_id:04x}")
+    # Never fatal: the kernel registers a *polling* rfkill at probe and keeps
+    # the device usable even when the pin reads off. A real kill switch simply
+    # yields no frames, so blocking bring-up here only breaks working clones.
     if not radio_on:
-        logger.warning("rtl8187: hardware radio switch reads OFF (%s)", rfkill_diag)
+        logger.warning("rtl8187: radio switch pin reads OFF (%s); continuing", rfkill_diag)
 
     return ProbeResult(
         mac=mac,

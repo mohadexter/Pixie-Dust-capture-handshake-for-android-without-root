@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root/releases/tag/v1.0.8">
+  <a href="https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root/releases/tag/v1.0.9">
     <img src="https://img.shields.io/badge/Platform-Android-green?logo=android" alt="Android">
   </a>
   <img src="https://img.shields.io/badge/Language-Java-orange?logo=java" alt="Java">
@@ -35,7 +35,7 @@
 
 
 # Download APK 📥
-> https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root/releases/tag/v1.0.8
+> https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root/releases/tag/v1.0.9
 
 
 ## Table of contents
@@ -242,7 +242,7 @@ Deliberately conservative dependencies: plain Android Views (no Compose), Java/X
 
 **Chipset drivers.** Each supported chipset has its own module under `wifit3/chips/`, mirroring the vendor's Linux bring-up sequence (probe → RF init → channel tune → monitor entry → RX decode → TX injection). A driver only counts as working when it behaves like the reference kernel driver — not merely when it compiles. Notable quirks: **RTL8187** (hard-MAC, 2.4 GHz only, stamps its own 802.11 sequence number); **AR9271 / RT5370 / RTL8812AU** (each with its own RF-init/channel-tune path and supported channels).
 
-**Radio-switch (rfkill) handling.** On RTL8187 adapters the rfkill GPIO is a *polling* signal; a single cold-probe read can misreport OFF on dongles with no physical switch. The driver samples the pin and cross-checks both known masks (`0x2`, `0x4`) before declaring the radio off, while still respecting a genuine switch — and surfaces raw pin values for diagnosis.
+**Radio-switch (rfkill) handling.** On RTL8187 adapters the rfkill GPIO is a *polling* signal; a single cold-probe read can misreport OFF on dongles with no physical switch. The driver samples the pin and cross-checks the known masks (`0x2`, `0x4`, and `0x1` on some clones) - and, like the kernel, never aborts bring-up on it: a reading of OFF only adds a warning with the raw GPIO values, because a genuine kill switch simply yields no frames while working clones may have a floating or inverted pin.
 
 ## Supported hardware
 
@@ -261,7 +261,8 @@ The **Bands** column tells you whether an adapter reaches 5/6 GHz or is 2.4 GHz 
 | MediaTek | MT7921AU | Wi-Fi 6 | 2.4 / 5 GHz |
 | MediaTek | MT7925U | Wi-Fi 7 | 2.4 / 5 / 6 GHz |
 | Atheros | AR9271 | AWUS036NHA | 2.4 GHz only |
-| Realtek | RTL8187 / RTL8188EUS / RTL8192FU | — | 2.4 GHz only |
+| Realtek | RTL8187 / RTL8188EUS / RTL8192FU | - | 2.4 GHz only |
+| Realtek | RTL8188FTV | - | 2.4 GHz only |
 | Realtek | RTL8812AU | AWUS036ACH | 2.4 / 5 GHz |
 | Realtek | RTL8814AU | AC1900 | 2.4 / 5 GHz |
 | Realtek | RTL8821AU | AC600 | 2.4 / 5 GHz |

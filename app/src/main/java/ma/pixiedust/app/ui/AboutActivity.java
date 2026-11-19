@@ -33,6 +33,8 @@ public class AboutActivity extends AppCompatActivity {
         });
         b.btnSupportProject.setOnClickListener(v ->
                 startActivity(new Intent(this, SupportActivity.class)));
+        SupportActivity.bindDonations(b.donateRow, addressRes ->
+                Ui.copy(this, getString(addressRes), R.string.support_copied));
         b.versionText.setText(getString(R.string.about_version, versionName()));
     }
 

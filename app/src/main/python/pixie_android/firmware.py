@@ -19,6 +19,7 @@ CHIP_FIRMWARE_INFO: Dict[str, Dict[str, Any]] = {
     "mt7925au": {"filename": "WIFI_RAM_CODE_MT7925_1_1.bin", "dir": "mt7925au"},
     "rtl8188eus": {"filename": "rtl8188eufw.bin", "dir": "rtl8188eus"},
     "rtl8188eus_dkms": {"filename": "rtl8188eufw.bin", "dir": "rtl8188eus_dkms"},
+    "rtl8188ftv_dkms": {"filename": "rtl8188fufw.bin", "dir": "rtl8188ftv_dkms"},
     "rtl8192fu": {"filename": "rtl8192fufw.bin", "dir": "rtl8192fu"},
     "rtl8812au": {"filename": "rtw8812a_fw.bin", "dir": "rtl8812au"},
     "rtl8812au_dkms": {"filename": "rtl8812au_fw.bin", "dir": "rtl8812au_dkms"},

@@ -1,19 +1,34 @@
 {
-  "versionCode": 9,
-  "versionName": "1.0.8",
-  "url": "https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root/releases/download/v1.0.8/PixieDust-release.apk",
-  "sha256": "852264db32d59f4cbad38d8f821610677b4bc5c136b4916304df43190188fe00",
-  "size": 31821134,
+  "versionCode": 10,
+  "versionName": "1.0.9",
+  "url": "https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root/releases/download/v1.0.9/PixieDust-release.apk",
+  "sha256": "636fdf9ef66e31d0a842642c0b84fc0556da4027bf423cf0ecc59f871dec0489",
+  "size": 32099515,
   "changelog": [
     {
       "versionCode": 10,
       "versionName": "1.0.9",
-      "date": "2026-11-18",
+      "date": "2026-11-19",
       "items": [
         {
           "type": "new",
-          "en": "Telegram plane icon for the support button in the scan header, clearer than the generic info icon",
-          "fr": "Icône « avion » Telegram pour le bouton d’assistance dans l’en-tête du balayage, plus claire que l’icône d’information"
+          "en": "RTL8188FTV (0bda:f179) support: full vendor driver port with bundled firmware, monitor mode and channel hopping",
+          "fr": "Prise en charge du RTL8188FTV (0bda:f179) : pilote constructeur complet, firmware embarqué, mode moniteur et saut de canaux"
+        },
+        {
+          "type": "fix",
+          "en": "RTL8187 no longer aborts with 'radio switch reads OFF' on dongles without a physical switch; the pin is sampled, an extra mask is checked, and bring-up continues",
+          "fr": "Le RTL8187 ne s'arrête plus sur « radio switch reads OFF » pour les adaptateurs sans interrupteur physique ; la broche est rééchantillonnée, un masque supplémentaire est vérifié et le démarrage continue"
+        },
+        {
+          "type": "new",
+          "en": "Donation addresses (BTC, ETH, LTC, SOL, TRX) under the Telegram entry in About and Support, with one-tap copy",
+          "fr": "Adresses de don (BTC, ETH, LTC, SOL, TRX) sous l'entrée Telegram dans À propos et Assistance, avec copie en un geste"
+        },
+        {
+          "type": "new",
+          "en": "The support entry now uses the official Telegram logo instead of a generic paper plane",
+          "fr": "L'entrée d'assistance utilise désormais le logo officiel Telegram au lieu d'un avion en papier générique"
         },
         {
           "type": "new",
