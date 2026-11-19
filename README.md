@@ -70,6 +70,18 @@
 
 Questions or support: **[t.me/PixieDustapp](https://t.me/PixieDustapp)**
 
+## Support the project
+
+Pixie Dust is free and independent. If it's useful to you, any amount helps — copy an address from your wallet app:
+
+| Coin | Address |
+|---|---|
+| <img src="https://cdn.simpleicons.org/bitcoin/F7931A" width="18" height="18" alt="Bitcoin" /> **Bitcoin (BTC)** | `bc1qkcxl9wssq0ulfkapshupu6s4p9m9spyypgyudw` |
+| <img src="https://cdn.simpleicons.org/ethereum/627EEA" width="18" height="18" alt="Ethereum" /> **Ethereum (ETH)** | `0x785D5A5a29FC25D7460095f8c09CEC4C6c10c8e0` |
+| <img src="https://cdn.simpleicons.org/litecoin/345D9D" width="18" height="18" alt="Litecoin" /> **Litecoin (LTC)** | `ltc1qpsn499zgzu9sqap67w8l4vumjlda3mk7gnrnfc` |
+| <img src="https://cdn.simpleicons.org/solana/9945FF" width="18" height="18" alt="Solana" /> **Solana (SOL)** | `8xnMikxK2SADx4ZAo46WRZ6cMZ2gdLjhegNi1PBuf1oe` |
+| <img src="docs/icons/tron.png" width="18" height="18" alt="Tron" /> **Tron (TRX)** | `TXUYnmCwXAXV7HRntyKzkkrZSDRaBVTFzK` |
+
 ---
 
 ## Short description
@@ -373,17 +385,6 @@ Full source, build instructions, release notes, and the signed APK:
 
 GPL-2.0 — Java/XML for the interface, Python for the engine, libusb for the radio, no root anywhere in the stack.
 
-## Support the project
-
-Pixie Dust is free and independent. If it's useful to you, any amount helps — copy an address from your wallet app:
-
-| Coin | Address |
-|---|---|
-| <img src="https://cdn.simpleicons.org/bitcoin/F7931A" width="18" height="18" alt="Bitcoin" /> **Bitcoin (BTC)** | `bc1qkcxl9wssq0ulfkapshupu6s4p9m9spyypgyudw` |
-| <img src="https://cdn.simpleicons.org/ethereum/627EEA" width="18" height="18" alt="Ethereum" /> **Ethereum (ETH)** | `0x785D5A5a29FC25D7460095f8c09CEC4C6c10c8e0` |
-| <img src="https://cdn.simpleicons.org/litecoin/345D9D" width="18" height="18" alt="Litecoin" /> **Litecoin (LTC)** | `ltc1qpsn499zgzu9sqap67w8l4vumjlda3mk7gnrnfc` |
-| <img src="https://cdn.simpleicons.org/solana/9945FF" width="18" height="18" alt="Solana" /> **Solana (SOL)** | `8xnMikxK2SADx4ZAo46WRZ6cMZ2gdLjhegNi1PBuf1oe` |
-| <img src="docs/icons/tron.png" width="18" height="18" alt="Tron" /> **Tron (TRX)** | `TXUYnmCwXAXV7HRntyKzkkrZSDRaBVTFzK` |
 
 Addresses are shown for information only — Pixie Dust never asks for payment to unlock a feature. Questions: [t.me/PixieDustapp](https://t.me/PixieDustapp)
 
