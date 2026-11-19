@@ -33,6 +33,11 @@
 
 > 📖 **Read the full write-up:** [Pixie Dust: Auditing WPS and WPA Security from an Android Phone, Without Root](ARTICLE.md) — architecture, the libusb-on-Android work, the interface, the safety rules, and the honest limits of the project.
 
+
+# Download APK 👇
+> https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root/releases/tag/v1.0.8
+
+
 ## Table of contents
 
 - [Purpose and ethics](#purpose-and-ethics)
