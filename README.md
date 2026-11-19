@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root">
+  <a href="https://github.com/mohadexter/Pixie-Dust-capture-handshake-for-android-without-root/releases/tag/v1.0.8">
     <img src="https://img.shields.io/badge/Platform-Android-green?logo=android" alt="Android">
   </a>
   <img src="https://img.shields.io/badge/Language-Java-orange?logo=java" alt="Java">
